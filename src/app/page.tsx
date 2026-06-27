@@ -1,7 +1,7 @@
 import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import Hero from "@/components/home/hero";
-import FeaturedProjects from "@/components/home/featured-projects";
+import FeaturedCaseStudies from "@/components/home/featured-case-studies";
 import AboutPreview from "@/components/home/about-preview";
 import Skills from "@/components/home/skills";
 import MarketplacePreview from "@/components/home/marketplace-preview";
@@ -13,7 +13,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <FeaturedProjects />
+        <FeaturedCaseStudies />
         <AboutPreview />
         <Skills />
         <MarketplacePreview />

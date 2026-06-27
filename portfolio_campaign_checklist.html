@@ -1,0 +1,186 @@
+
+<style>
+  .checklist-wrap { padding: 1rem 0; font-family: var(--font-sans); }
+  .phase { margin-bottom: 2rem; }
+  .phase-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid var(--border); }
+  .phase-label { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .phase-title { font-size: 15px; font-weight: 500; color: var(--text-primary); }
+  .phase-progress { margin-left: auto; font-size: 12px; color: var(--text-muted); }
+  .item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-radius: 8px; cursor: pointer; transition: background 0.15s; margin-bottom: 2px; }
+  .item:hover { background: var(--surface-1); }
+  .item.done .item-text { text-decoration: line-through; color: var(--text-muted); }
+  .checkbox { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--border-strong); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .item.done .checkbox { background: var(--fill-accent); border-color: var(--fill-accent); }
+  .checkmark { display: none; }
+  .item.done .checkmark { display: block; }
+  .item-text { font-size: 14px; color: var(--text-primary); line-height: 1.5; }
+  .item-tag { font-size: 11px; padding: 1px 7px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+  .tag-now { background: var(--bg-danger); color: var(--text-danger); }
+  .tag-next { background: var(--bg-warning); color: var(--text-warning); }
+  .tag-done { background: var(--bg-success); color: var(--text-success); }
+  .progress-bar-wrap { background: var(--surface-1); border-radius: 20px; height: 6px; margin-bottom: 1.5rem; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 20px; background: var(--fill-accent); transition: width 0.4s ease; }
+  .summary { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .summary-pill { font-size: 12px; padding: 4px 12px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--text-secondary); }
+</style>
+
+<div class="checklist-wrap">
+  <h2 class="sr-only">Portfolio and campaign checklist for Ahmed Ashour</h2>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="global-bar" style="width: 0%"></div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-pill" id="pill-done">0 done</div>
+    <div class="summary-pill" id="pill-left">0 remaining</div>
+    <div class="summary-pill" id="pill-total">0 total</div>
+  </div>
+
+  <div id="phases"></div>
+</div>
+
+<script>
+const phases = [
+  {
+    id: "hero",
+    label: "Hero section",
+    color: "var(--bg-success)",
+    textColor: "var(--text-success)",
+    items: [
+      { text: "New headline — "I make products people enjoy using."", done: true },
+      { text: "Subtitle updated — no overlap with headline", done: true },
+      { text: "Availability badge updated to "Open to Senior & Lead design roles"", done: true },
+      { text: "Grid background removed", done: true },
+      { text: "Avatar replaced with illustrated character", done: true },
+      { text: "CTA hierarchy fixed — View My Work dominant", done: true },
+      { text: "Stats row restored (10+ / 30+ / 10+ / 5)", done: true },
+      { text: "Nav name highlight bug fixed", done: true },
+      { text: "Mouse-tracking eye animation wired in (AnimatedAvatar.tsx ready)", done: false },
+    ]
+  },
+  {
+    id: "casestudies",
+    label: "Case studies",
+    color: "var(--bg-warning)",
+    textColor: "var(--text-warning)",
+    items: [
+      { text: "Intouch Live Design System — full rewrite done (Problem → Role → Decision → Built → Result → Learning)", done: true },
+      { text: "AFIF case study — rewrite pending", done: false },
+      { text: "Geneina case study — rewrite pending", done: false },
+      { text: "All 6 project card titles — rewrite with compelling hooks", done: false },
+      { text: "Verify no stale content (wrong project names, copied bullets)", done: false },
+    ]
+  },
+  {
+    id: "about",
+    label: "About section",
+    color: "var(--bg-warning)",
+    textColor: "var(--text-warning)",
+    items: [
+      { text: "Lead with engineering background as core differentiator", done: false },
+      { text: "Remove generic buzzwords (empathy, storytelling, problem-solving)", done: false },
+      { text: "Add direct CTA for hiring managers", done: false },
+    ]
+  },
+  {
+    id: "skills",
+    label: "Skills section",
+    color: "var(--bg-warning)",
+    textColor: "var(--text-warning)",
+    items: [
+      { text: "Replace tag list with depth — process philosophy or methodology", done: false },
+      { text: "Add client/company logos for social proof", done: false },
+    ]
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    color: "var(--bg-accent)",
+    textColor: "var(--text-accent)",
+    items: [
+      { text: "Headline updated — "Senior Product Designer · Design Systems & Mobile UX · Open to opportunities"", done: true },
+      { text: "About section rewritten with problem-solving narrative + CTA", done: true },
+      { text: "Intouch design system post — story-driven version published", done: false },
+      { text: "AFIF post published", done: false },
+      { text: "Geneina post published", done: false },
+      { text: "Recruiter outreach started (Phase 2)", done: false },
+    ]
+  },
+  {
+    id: "presence",
+    label: "Broader presence",
+    color: "var(--bg-accent)",
+    textColor: "var(--text-accent)",
+    items: [
+      { text: "Dribbble profile updated with case study shots", done: false },
+      { text: "Behance profile updated", done: false },
+      { text: "Case study walkthrough video recorded", done: false },
+      { text: "Career story video created (long-term brand building)", done: false },
+    ]
+  },
+  {
+    id: "conversion",
+    label: "Offer conversion",
+    color: "var(--bg-pro)",
+    textColor: "var(--text-pro)",
+    items: [
+      { text: "Analytics review — which case studies get most time", done: false },
+      { text: "Informational calls started with warm network", done: false },
+      { text: "5+ inbound offers received", done: false },
+    ]
+  }
+];
+
+const container = document.getElementById("phases");
+
+function updateGlobal() {
+  const allItems = phases.flatMap(p => p.items);
+  const doneCount = allItems.filter(i => i.done).length;
+  const total = allItems.length;
+  const pct = Math.round((doneCount / total) * 100);
+  document.getElementById("global-bar").style.width = pct + "%";
+  document.getElementById("pill-done").textContent = doneCount + " done";
+  document.getElementById("pill-left").textContent = (total - doneCount) + " remaining";
+  document.getElementById("pill-total").textContent = total + " total";
+}
+
+function renderPhase(phase) {
+  const doneCount = phase.items.filter(i => i.done).length;
+  const total = phase.items.length;
+
+  const div = document.createElement("div");
+  div.className = "phase";
+  div.innerHTML = `
+    <div class="phase-header">
+      <span class="phase-label" style="background:${phase.color}; color:${phase.textColor}">${phase.label}</span>
+      <span class="phase-progress" id="prog-${phase.id}">${doneCount}/${total}</span>
+    </div>
+    ${phase.items.map((item, i) => `
+      <div class="item ${item.done ? 'done' : ''}" data-phase="${phase.id}" data-idx="${i}" onclick="toggleItem(this)">
+        <div class="checkbox">
+          <svg class="checkmark" width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="item-text">${item.text}</span>
+      </div>
+    `).join("")}
+  `;
+  container.appendChild(div);
+}
+
+function toggleItem(el) {
+  const phaseId = el.dataset.phase;
+  const idx = parseInt(el.dataset.idx);
+  const phase = phases.find(p => p.id === phaseId);
+  phase.items[idx].done = !phase.items[idx].done;
+  el.classList.toggle("done");
+  const doneCount = phase.items.filter(i => i.done).length;
+  document.getElementById("prog-" + phaseId).textContent = doneCount + "/" + phase.items.length;
+  updateGlobal();
+}
+
+phases.forEach(renderPhase);
+updateGlobal();
+</script>

@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import { profile, stats } from "@/data/content";
+import AnimatedAvatar from "@/components/ui/AnimatedAvatar";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -19,7 +20,7 @@ const item = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-grid pt-[72px]">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-[72px]">
       {/* Atmospheric orbs */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-indigo-600/10 blur-[80px]" />
@@ -38,21 +39,20 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </span>
-              <span className="font-body text-xs font-medium text-muted uppercase tracking-[0.18em]">
-                Available for opportunities
+              <span className="font-body text-sm font-medium text-muted">
+                Open to Senior &amp; Lead design roles
               </span>
             </motion.div>
 
             {/* Headline */}
             <motion.h1
               variants={item}
-              className="font-display font-bold leading-[1.02] tracking-tight text-primary mb-8 text-[3.25rem] sm:text-7xl lg:text-[5.5rem] xl:text-[6.25rem]"
+              className="font-display font-bold leading-[1.02] tracking-tight text-primary mb-8 text-[2.6rem] sm:text-[3.6rem] lg:text-[4.4rem] xl:text-[5rem]"
             >
-              Designing{" "}
+              I make{" "}
               <span className="text-gradient">products</span>
-              {" "}that<br className="hidden sm:block" />{" "}
-              people{" "}
-              <span className="text-gradient">love</span>.
+              {" "}people<br className="hidden sm:block" />{" "}
+              <span className="text-gradient">enjoy</span>{" "}using.
             </motion.h1>
 
             {/* Bio */}
@@ -60,24 +60,23 @@ export default function Hero() {
               variants={item}
               className="font-body text-lg text-muted leading-[1.75] max-w-[48ch] mb-10"
             >
-              Senior Product Designer with 10+ years shaping digital products
-              across OTT, retail, and SaaS — turning complex problems into
-              experiences that feel inevitable.
+              Senior Product Designer with 10+ years — from early-stage startups
+              to multi-market platforms.
             </motion.p>
 
             {/* CTAs */}
             <motion.div variants={item} className="flex flex-wrap gap-3 mb-14">
               <Link
                 href="/work"
-                className="inline-flex items-center gap-2.5 px-7 py-4 bg-accent hover:bg-accent-light text-white text-sm font-semibold font-body rounded-lg transition-colors duration-200 shadow-lg shadow-accent/30 cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-9 py-[18px] bg-accent hover:bg-accent-light text-white text-base font-semibold font-body rounded-lg transition-colors duration-200 shadow-lg shadow-accent/30 cursor-pointer"
               >
-                View My Work <ArrowRight size={16} />
+                View My Work <ArrowRight size={17} />
               </Link>
               <a
                 href={profile.resumeUrl}
-                className="inline-flex items-center gap-2.5 px-7 py-4 border border-white/[0.12] hover:border-white/[0.24] hover:bg-white/[0.04] text-primary text-sm font-semibold font-body rounded-lg transition-colors duration-200 cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-7 py-4 border border-white/[0.10] hover:border-white/[0.20] text-muted hover:text-primary text-sm font-medium font-body rounded-lg transition-colors duration-200 cursor-pointer opacity-70 hover:opacity-100"
               >
-                <Download size={16} /> Download CV
+                <Download size={15} /> Download CV
               </a>
             </motion.div>
 
@@ -102,33 +101,14 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right — portrait placeholder */}
+          {/* Right — animated avatar */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.35, ease }}
-            className="hidden lg:block"
+            className="hidden lg:flex items-center justify-center -mt-20 -ml-6"
           >
-            <div className="relative w-[320px] h-[420px]">
-              {/* Glow */}
-              <div className="absolute inset-0 rounded-3xl bg-indigo-600/20 blur-3xl scale-90 translate-y-4" />
-              {/* Frame */}
-              <div className="relative h-full rounded-3xl border border-white/[0.08] bg-surface overflow-hidden gradient-border">
-                <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 via-blue-900/10 to-transparent" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                  <div className="w-16 h-16 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
-                    <span className="font-display text-xl font-semibold text-muted">
-                      {profile.initials}
-                    </span>
-                  </div>
-                  <span className="font-body text-xs text-dim">Your photo here</span>
-                </div>
-                <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-surface to-transparent">
-                  <p className="font-display font-semibold text-primary text-sm">{profile.name}</p>
-                  <p className="font-body text-xs text-muted mt-0.5">{profile.role}</p>
-                </div>
-              </div>
-            </div>
+            <AnimatedAvatar src="/assets/avatar.png" size={380} />
           </motion.div>
 
         </div>
