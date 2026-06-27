@@ -15,10 +15,28 @@ const socialIcons: Record<string, React.ElementType> = {
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+    setError(null);
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    if (res.ok) {
+      setSent(true);
+    } else {
+      const data = await res.json().catch(() => ({}));
+      setError(data.error ?? "Something went wrong. Please try again.");
+    }
+
+    setSending(false);
   };
 
   return (
@@ -129,11 +147,15 @@ export default function ContactPage() {
                         className="w-full px-4 py-3 rounded-lg border border-white/[0.08] bg-surface text-sm font-body text-primary placeholder:text-dim focus:outline-none focus:border-accent/50 transition-colors duration-200 resize-none"
                       />
                     </div>
+                    {error && (
+                      <p className="text-sm text-red-400 font-body">{error}</p>
+                    )}
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-accent hover:bg-accent-light text-white text-sm font-medium font-body rounded-lg transition-colors duration-200 shadow-lg shadow-accent/20 cursor-pointer mt-2"
+                      disabled={sending}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-accent hover:bg-accent-light text-white text-sm font-medium font-body rounded-lg transition-colors duration-200 shadow-lg shadow-accent/20 cursor-pointer mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <Send size={16} /> Send Message
+                      <Send size={16} /> {sending ? "Sending…" : "Send Message"}
                     </button>
                   </form>
                 )}
