@@ -6,7 +6,7 @@ const CASE_STUDIES_DIR = path.join(process.cwd(), "content/case-studies");
 
 // ─── Markdown-based case studies (used by /work/[slug] and /case-studies) ─────
 
-type MdCaseStudy = {
+export type MdCaseStudy = {
   slug: string;
   index: string;
   title: string;

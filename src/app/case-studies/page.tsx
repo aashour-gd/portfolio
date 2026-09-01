@@ -41,7 +41,7 @@ export default function CaseStudiesPage() {
 
           {/* Featured */}
           <Link
-            href={`/work/${featured.slug}`}
+            href={`/case-studies/${featured.slug}`}
             className="group block mb-6 rounded-3xl border border-white/[0.08] bg-card overflow-hidden hover:border-white/[0.16] transition-[transform,border-color] duration-200 cursor-pointer"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px]">
@@ -82,7 +82,7 @@ export default function CaseStudiesPage() {
             {rest.map((cs, i) => (
               <Link
                 key={cs.slug}
-                href={`/work/${cs.slug}`}
+                href={`/case-studies/${cs.slug}`}
                 className="group flex flex-col rounded-2xl border border-white/[0.07] bg-card overflow-hidden hover:border-white/[0.14] transition-[transform,border-color] duration-200 hover:-translate-y-1 cursor-pointer"
               >
                 <div className={`h-48 bg-gradient-to-br ${gradients[(i + 1) % gradients.length]} relative`}>

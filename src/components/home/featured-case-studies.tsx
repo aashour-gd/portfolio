@@ -22,6 +22,7 @@ type CaseStudy = {
   imageSrc: string;
   href: string;
   stats?: Stat[];
+  statsOnLight?: boolean;
   comingSoon?: boolean;
 };
 
@@ -66,18 +67,23 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     index: "03",
-    slug: "geneina",
-    title: "Geneina",
-    category: "Product Design · UX/UI",
-    hook: "Translating complex needs into accessible experiences.",
+    slug: "retail-os",
+    title: "Retail OS — Modular Retail Platform",
+    category: "Product Strategy · UX Systems",
+    hook: "A platform, not a Gomla-shaped app pretending to scale.",
     summary:
-      "Product design for Geneina — translating complex user needs into clear, accessible digital experiences.",
-    tags: ["Product Design", "UX/UI"],
-    accent: "#475569",
-    panelBg: "#0F172A",
-    imageSrc: "/images/geneina-cover.png",
-    href: "#",
-    comingSoon: true,
+      "A four-sided omnichannel platform — customer, retailer, store, brand — sharing one design system, piloted on a 78-year-old wholesaler and pressure-tested against a second retailer.",
+    tags: ["Product Design", "UX Strategy", "Retail Media"],
+    accent: "#F59E0B",
+    panelBg: "#EDE4D5",
+    imageSrc: "/images/retail-os-cover.png",
+    href: "/case-studies/retail-os",
+    statsOnLight: true,
+    stats: [
+      { value: "4", label: "Surfaces" },
+      { value: "2", label: "Retailers" },
+      { value: "12", label: "Sprints" },
+    ],
   },
 ];
 
@@ -247,7 +253,7 @@ function CaseStudyCard({ cs, i }: { cs: CaseStudy; i: number }) {
                   inset: 0,
                   width: "100%",
                   height: "100%",
-                  objectFit: "cover",
+                  objectFit: "contain",
                 }}
               />
             </div>
@@ -257,16 +263,19 @@ function CaseStudyCard({ cs, i }: { cs: CaseStudy; i: number }) {
           {cs.stats && cs.stats.length > 0 && (
             <div
               className="flex items-center justify-around py-4 px-5"
-              style={{ borderTop: "1px solid #1E293B" }}
+              style={{ borderTop: `1px solid ${cs.statsOnLight ? "rgba(15,23,42,0.12)" : "#1E293B"}` }}
             >
               {cs.stats.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-sm font-bold text-white leading-none">
+                  <div
+                    className="text-sm font-bold leading-none"
+                    style={{ color: cs.statsOnLight ? "#1F2937" : "#FFFFFF" }}
+                  >
                     {stat.value}
                   </div>
                   <div
                     className="text-[10px] font-medium mt-1"
-                    style={{ color: "#64748B" }}
+                    style={{ color: cs.statsOnLight ? "#8A7A5E" : "#64748B" }}
                   >
                     {stat.label}
                   </div>

@@ -14,6 +14,30 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "retail-os",
+    title: "Retail OS — Modular Retail Platform",
+    category: "UI/UX Design",
+    year: "2026",
+    description: "A four-sided omnichannel platform — customer, retailer, store, brand — sharing one design system, piloted on a 78-year-old wholesaler and pressure-tested against a second retailer.",
+    tags: ["Product Design", "UX Strategy", "Design Systems", "Retail Media"],
+    featured: true,
+    gradient: "from-amber-900/50 via-orange-900/30 to-transparent",
+    cover: "/images/retail-os-cover.png",
+    href: "/case-studies/retail-os",
+  },
+  {
+    slug: "designguard",
+    title: "DesignGuard — AI-Powered Design QA",
+    category: "UI/UX Design",
+    year: "2025",
+    description: "An AI-powered CLI that audits Figma files against design-system rules — catching spacing, color, and typography inconsistencies before they reach the developer.",
+    tags: ["AI", "Design QA", "Design Systems", "Developer Tools"],
+    featured: true,
+    gradient: "from-blue-900/50 via-indigo-900/30 to-transparent",
+    cover: "/images/designguard.png",
+    href: "/work/designguard",
+  },
+  {
     slug: "configurable-data-table",
     title: "Flexible Data Tables for Enterprise Retail Media",
     category: "UI/UX Design",

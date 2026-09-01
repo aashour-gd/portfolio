@@ -3,14 +3,23 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import ExpandableSection from "@/components/case-studies/expandable-section";
 import CoverImage from "@/components/case-studies/cover-image";
+import Nav from "@/components/layout/nav";
+import Footer from "@/components/layout/footer";
+import MarkdownCaseStudy from "@/components/case-studies/markdown-case-study";
 import {
   getRichCaseStudy,
   getRichCaseStudySlugs,
+  getAllCaseStudies,
+  getCaseStudy,
   type CaseStudy,
 } from "@/lib/case-studies";
 
 export function generateStaticParams() {
-  return getRichCaseStudySlugs().map((slug) => ({ slug }));
+  const slugs = new Set<string>([
+    ...getRichCaseStudySlugs(),
+    ...getAllCaseStudies().map((c) => c.slug),
+  ]);
+  return Array.from(slugs).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -20,11 +29,20 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const cs = getRichCaseStudy(slug);
-  if (!cs) return {};
-  return {
-    title: `${cs.title} — Case Study`,
-    description: cs.hook,
-  };
+  if (cs) {
+    return {
+      title: `${cs.title} — Case Study`,
+      description: cs.hook,
+    };
+  }
+  const mdCs = getCaseStudy(slug);
+  if (mdCs) {
+    return {
+      title: `${mdCs.title} — Case Study`,
+      description: mdCs.summary,
+    };
+  }
+  return {};
 }
 
 // ─── Section wrapper ────────────────────────────────────────────────────────────
@@ -87,7 +105,32 @@ export default async function CaseStudyPage({
 }) {
   const { slug } = await params;
   const cs = getRichCaseStudy(slug);
-  if (!cs) notFound();
+  if (!cs) {
+    // Markdown-based case study (e.g. retail-os) — same page, served under /case-studies
+    const mdCs = getCaseStudy(slug);
+    if (!mdCs) notFound();
+
+    const all = getAllCaseStudies();
+    const idx = all.findIndex((c) => c.slug === slug);
+    const prev = all[idx - 1];
+    const next = all[(idx + 1) % all.length];
+
+    return (
+      <>
+        <Nav />
+        <main className="pt-[72px]">
+          <MarkdownCaseStudy
+            cs={mdCs}
+            prev={prev}
+            next={next}
+            basePath="/case-studies"
+            backLabel="Back to Case Studies"
+          />
+        </main>
+        <Footer />
+      </>
+    );
+  }
 
   const { brand, sections } = cs;
 

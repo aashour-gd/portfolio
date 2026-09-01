@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import { profile, stats } from "@/data/content";
-import AnimatedAvatar from "@/components/ui/AnimatedAvatar";
+import AvatarOrbit from "@/components/ui/AvatarOrbit";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -108,7 +108,7 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.35, ease }}
             className="hidden lg:flex items-center justify-center -mt-20 -ml-6"
           >
-            <AnimatedAvatar src="/assets/avatar.png" size={380} />
+            <AvatarOrbit src="/assets/avatar.png" size={380} />
           </motion.div>
 
         </div>
