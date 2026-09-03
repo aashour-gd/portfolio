@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import ReactMarkdown, { type Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Tag from "@/components/ui/tag";
 import type { MdCaseStudy } from "@/lib/case-studies";
 
@@ -48,15 +49,49 @@ const md: Components = {
     <strong className="font-semibold text-primary">{children}</strong>
   ),
   em: ({ children }) => <em className="italic text-primary/80">{children}</em>,
-  a: ({ href, children }) => (
-    <a
-      href={href}
-      className="text-accent-light underline underline-offset-2 hover:text-accent transition-colors"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+  a: ({ href, children }) => {
+    const isInternal = typeof href === "string" && href.startsWith("/");
+    return (
+      <a
+        href={href}
+        className="text-accent-light underline underline-offset-2 hover:text-accent transition-colors"
+        {...(isInternal ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+      >
+        {children}
+      </a>
+    );
+  },
+  blockquote: ({ children }) => (
+    <blockquote className="my-6 border-l-2 border-accent/40 pl-4 font-body text-muted italic [&_p]:mb-0">
       {children}
-    </a>
+    </blockquote>
+  ),
+  hr: () => <hr className="my-10 border-t border-white/[0.08]" />,
+  code: ({ children }) => (
+    <code className="rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[0.85em] text-accent-light">
+      {children}
+    </code>
+  ),
+  pre: ({ children }) => (
+    <pre className="my-6 overflow-x-auto rounded-xl border border-white/[0.08] bg-black/30 p-4 font-mono text-sm text-muted [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-muted">
+      {children}
+    </pre>
+  ),
+  table: ({ children }) => (
+    <div className="my-8 overflow-x-auto rounded-xl border border-white/[0.08]">
+      <table className="w-full border-collapse text-left font-body text-sm">{children}</table>
+    </div>
+  ),
+  thead: ({ children }) => <thead className="bg-white/[0.03]">{children}</thead>,
+  th: ({ children }) => (
+    <th className="border-b border-white/[0.1] px-4 py-3 align-top font-semibold text-primary">
+      {children}
+    </th>
+  ),
+  td: ({ children }) => (
+    <td className="border-b border-white/[0.05] px-4 py-3 align-top text-muted [&>span]:my-0">
+      {children}
+    </td>
   ),
 };
 
@@ -112,7 +147,7 @@ export default function MarkdownCaseStudy({
 
       {/* Content */}
       <div className="max-w-3xl mx-auto px-6 py-16 lg:py-24">
-        <ReactMarkdown components={md}>{cs.content}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={md}>{cs.content}</ReactMarkdown>
       </div>
 
       {/* Next/Prev */}

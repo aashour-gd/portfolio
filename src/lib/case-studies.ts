@@ -14,6 +14,7 @@ export type MdCaseStudy = {
   tags: string[];
   product: string;
   content: string;
+  cover?: string;
 };
 
 function readCaseStudyFile(filename: string): MdCaseStudy {
@@ -33,6 +34,7 @@ function readCaseStudyFile(filename: string): MdCaseStudy {
     tags: data.tags ?? [],
     product: data.product ?? "",
     content: body,
+    cover: data.cover ?? undefined,
   };
 }
 

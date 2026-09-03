@@ -48,7 +48,15 @@ export default function MarketplacePreview() {
               className="group flex flex-col rounded-2xl border border-white/[0.07] bg-card overflow-hidden hover:border-accent/25 transition-[transform,border-color] duration-200 hover:-translate-y-1 cursor-pointer"
             >
               {/* Cover */}
-              <div className={`h-40 bg-gradient-to-br ${item.gradient} relative overflow-hidden`}>
+              <div className={`h-40 relative overflow-hidden ${item.cover ? "bg-surface" : `bg-gradient-to-br ${item.gradient}`}`}>
+                {item.cover && (
+                  <img
+                    src={item.cover}
+                    alt={item.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
                 <div className="absolute bottom-4 left-4">
                   <span className={`inline-flex px-2.5 py-1 rounded-full text-[11px] font-medium font-body uppercase tracking-wider ${
@@ -74,12 +82,24 @@ export default function MarketplacePreview() {
                   <span className="font-body text-xs text-dim">
                     {item.downloads} downloads
                   </span>
-                  <button
-                    aria-label={`Download ${item.name}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs font-medium font-body text-primary transition-all duration-200 cursor-pointer"
-                  >
-                    <Download size={13} /> Get
-                  </button>
+                  {item.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Get ${item.name}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs font-medium font-body text-primary transition-all duration-200 cursor-pointer"
+                    >
+                      <Download size={13} /> Get
+                    </a>
+                  ) : (
+                    <button
+                      aria-label={`Download ${item.name}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs font-medium font-body text-primary transition-all duration-200 cursor-pointer"
+                    >
+                      <Download size={13} /> Get
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>

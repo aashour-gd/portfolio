@@ -7,6 +7,8 @@ export type MarketplaceItem = {
   downloads: string;
   gradient: string;
   featured: boolean;
+  url?: string;
+  cover?: string;
 };
 
 export const marketplaceItems: MarketplaceItem[] = [
@@ -21,14 +23,16 @@ export const marketplaceItems: MarketplaceItem[] = [
     featured: true,
   },
   {
-    id: "design-token-system",
-    name: "Design Token System",
-    description: "Production-ready token architecture for light and dark mode, with semantic naming convention.",
+    id: "medu-design-system",
+    name: "Medu Design System",
+    description: "A free, production-ready Figma design system — components, styles, and tokens you can drop straight into your product work.",
     category: "Design System",
-    price: "$19",
+    price: "Free",
     downloads: "1.1k",
     gradient: "from-purple-800/40 to-violet-900/40",
     featured: true,
+    url: "https://www.figma.com/community/file/1677113048340520722/medu-design-system",
+    cover: "/images/medu-cover.png",
   },
   {
     id: "figma-component-library",

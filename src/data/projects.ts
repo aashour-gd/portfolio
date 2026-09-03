@@ -14,6 +14,18 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "retail-media-network-portal",
+    title: "Retail Media Network Portal",
+    category: "UI/UX Design",
+    year: "2026",
+    description: "A two-sided retail media platform — the retailer's operations console and the advertiser's self-serve portal — designed and built end-to-end in one Angular codebase.",
+    tags: ["Product Design", "Design Systems", "Front-end Architecture", "AdTech"],
+    featured: true,
+    gradient: "from-slate-800/60 via-indigo-900/30 to-transparent",
+    cover: "/images/nexa-ads-intelligence-dashboard.jpg",
+    href: "/case-studies/retail-media-network-portal",
+  },
+  {
     slug: "retail-os",
     title: "Retail OS — Modular Retail Platform",
     category: "UI/UX Design",

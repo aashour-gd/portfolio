@@ -10,7 +10,15 @@ import { marketplaceItems, marketplaceCategories, type MarketplaceItem } from "@
 function ProductCard({ item }: { item: MarketplaceItem }) {
   return (
     <div className="group flex flex-col rounded-2xl border border-white/[0.07] bg-card overflow-hidden hover:border-white/[0.14] transition-[transform,border-color] duration-200 hover:-translate-y-1 cursor-default">
-      <div className={`h-48 bg-gradient-to-br ${item.gradient} relative overflow-hidden`}>
+      <div className={`h-48 relative overflow-hidden ${item.cover ? "bg-surface" : `bg-gradient-to-br ${item.gradient}`}`}>
+        {item.cover && (
+          <img
+            src={item.cover}
+            alt={item.name}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
         <div className="absolute bottom-4 left-4">
           <span className={`inline-flex px-2.5 py-1 rounded-full text-[11px] font-medium font-body ${
@@ -34,13 +42,28 @@ function ProductCard({ item }: { item: MarketplaceItem }) {
           <span className="font-body text-xs text-dim flex items-center gap-1.5">
             <Download size={12} /> {item.downloads}
           </span>
-          <button
-            aria-label={`Download ${item.name}`}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent/10 hover:bg-accent/20 border border-accent/20 text-xs font-medium font-body text-accent-light transition-colors duration-200 cursor-pointer"
-          >
-            <Download size={13} />
-            {item.price === "Free" ? "Download" : "Buy Now"}
-          </button>
+          {(() => {
+            const label = item.price === "Free" ? "Download" : "Buy Now";
+            const cls =
+              "inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent/10 hover:bg-accent/20 border border-accent/20 text-xs font-medium font-body text-accent-light transition-colors duration-200 cursor-pointer";
+            return item.url ? (
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${label} ${item.name}`}
+                className={cls}
+              >
+                <Download size={13} />
+                {label}
+              </a>
+            ) : (
+              <button aria-label={`${label} ${item.name}`} className={cls}>
+                <Download size={13} />
+                {label}
+              </button>
+            );
+          })()}
         </div>
       </div>
     </div>

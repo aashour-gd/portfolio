@@ -45,7 +45,15 @@ export default function CaseStudiesPage() {
             className="group block mb-6 rounded-3xl border border-white/[0.08] bg-card overflow-hidden hover:border-white/[0.16] transition-[transform,border-color] duration-200 cursor-pointer"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px]">
-              <div className={`min-h-[220px] lg:min-h-full bg-gradient-to-br ${gradients[0]} relative`}>
+              <div className={`min-h-[220px] lg:min-h-full relative overflow-hidden ${featured.cover ? "bg-surface" : `bg-gradient-to-br ${gradients[0]}`}`}>
+                {featured.cover && (
+                  <img
+                    src={featured.cover}
+                    alt={featured.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card/50 hidden lg:block" />
                 <div className="absolute top-6 left-6">
                   <Tag variant="accent">Featured</Tag>
@@ -85,7 +93,15 @@ export default function CaseStudiesPage() {
                 href={`/case-studies/${cs.slug}`}
                 className="group flex flex-col rounded-2xl border border-white/[0.07] bg-card overflow-hidden hover:border-white/[0.14] transition-[transform,border-color] duration-200 hover:-translate-y-1 cursor-pointer"
               >
-                <div className={`h-48 bg-gradient-to-br ${gradients[(i + 1) % gradients.length]} relative`}>
+                <div className={`h-48 relative overflow-hidden ${cs.cover ? "bg-surface" : `bg-gradient-to-br ${gradients[(i + 1) % gradients.length]}`}`}>
+                  {cs.cover && (
+                    <img
+                      src={cs.cover}
+                      alt={cs.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
                   <div className="absolute top-4 left-4">
                     <span className="font-body text-xs font-semibold text-accent/80 uppercase tracking-widest">
