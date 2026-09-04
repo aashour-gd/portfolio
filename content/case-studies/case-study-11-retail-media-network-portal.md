@@ -8,7 +8,8 @@ role: Product design, product definition, and front-end engineering (solo)
 timeline: June 2026 – present
 stack: [Angular 21, TypeScript, SCSS design tokens, ng-zorro, Storybook, Figma Code Connect]
 tags: [design systems, product design, front-end architecture, adtech, multi-tenant SaaS]
-cover: /images/nexa-ads-intelligence-dashboard.jpg
+cover: /images/nexa-cover.png
+unlisted: true
 ---
 
 # Retail Media Network Portal

@@ -18,7 +18,7 @@ export const metadata = {
 };
 
 export default function CaseStudiesPage() {
-  const caseStudies = getAllCaseStudies();
+  const caseStudies = getAllCaseStudies().filter((cs) => !cs.unlisted);
   const [featured, ...rest] = caseStudies;
 
   return (

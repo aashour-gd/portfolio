@@ -22,8 +22,8 @@ export const projects: Project[] = [
     tags: ["Product Design", "Design Systems", "Front-end Architecture", "AdTech"],
     featured: true,
     gradient: "from-slate-800/60 via-indigo-900/30 to-transparent",
-    cover: "/images/nexa-ads-intelligence-dashboard.jpg",
-    href: "/case-studies/retail-media-network-portal",
+    cover: "/images/nexa-cover.png",
+    href: "/work/retail-media-network-portal",
   },
   {
     slug: "retail-os",

@@ -15,6 +15,7 @@ export type MdCaseStudy = {
   product: string;
   content: string;
   cover?: string;
+  unlisted?: boolean;
 };
 
 function readCaseStudyFile(filename: string): MdCaseStudy {
@@ -35,6 +36,7 @@ function readCaseStudyFile(filename: string): MdCaseStudy {
     product: data.product ?? "",
     content: body,
     cover: data.cover ?? undefined,
+    unlisted: data.unlisted === true,
   };
 }
 
