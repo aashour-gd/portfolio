@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Tag from "@/components/ui/tag";
+import ImageLightbox from "./image-lightbox";
 import type { MdCaseStudy } from "@/lib/case-studies";
 
 const md: Components = {
@@ -147,7 +148,9 @@ export default function MarkdownCaseStudy({
 
       {/* Content */}
       <div className="max-w-3xl mx-auto px-6 py-16 lg:py-24">
-        <ReactMarkdown remarkPlugins={[remarkGfm]} components={md}>{cs.content}</ReactMarkdown>
+        <ImageLightbox>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={md}>{cs.content}</ReactMarkdown>
+        </ImageLightbox>
       </div>
 
       {/* Next/Prev */}

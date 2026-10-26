@@ -58,7 +58,7 @@ export const projects: Project[] = [
     tags: ["Product Design", "Enterprise UX", "Design Systems", "Data Tables"],
     featured: true,
     gradient: "from-indigo-900/50 via-blue-900/30 to-transparent",
-    cover: "/assets/case-study-1.png",
+    cover: "/images/nexa-tables-cover.png",
     href: "/work/configurable-data-table",
   },
   {

@@ -1,639 +1,131 @@
 ---
 title: "Flexible Data Tables for Enterprise Retail Media Operations"
-summary: "Designing a configurable table system with saved views, column management, and density control that adapts to Operations, Finance, and Performance workflows at scale."
+summary: "One table, three teams, three different jobs — designing a table that adapts instead of multiplying."
 tags: ["Product Design", "Enterprise UX", "Design Systems", "Data Tables"]
-product: "Intouch Live"
----
-# Flexible Data Tables for Enterprise Retail Media Operations
-
-## Complete Visual Content Plan
-
+product: "Nexa"
+cover: /images/nexa-tables-cover.png
 ---
 
-# 01. HERO
+> Part of the [Retail Media Network Portal](https://aashour.com/case-studies/retail-media-network-portal) project.
 
-## Goal
+![The campaign table — saved views, column management, density control and sticky columns](/images/nexa-tables-hero-views.png)
+*The final campaign table: saved views, column management, density control and sticky columns, all from one shared component.*
 
-Introduce the project and immediately demonstrate the final outcome.
+## At a glance
 
-## Visual 01 — Hero Showcase
+| | |
+|---|---|
+| **My role** | Solo — UX, interaction design, and front-end implementation |
+| **Users** | Operations, Finance, and Performance teams |
+| **Built with** | Angular, the shared `PortalTableComponent`, design tokens, Storybook |
+| **Used in** | Sponsored Campaigns, Ad Groups, Campaign Intelligence |
 
-```md
-[IMAGE_01_HERO]
+---
 
-Type:
-High Fidelity Product Screenshot
+## The Problem
 
-Content:
-- Campaign Table
-- Saved Views
-- Density Toggle
-- Column Management
-- Sticky Columns
+In a retail media platform, the campaign table is where most of the day actually happens. And three teams open the same table to do three completely different jobs.
 
-Style:
-Full Width
-Dark Background
-Floating Callouts
+**Operations** wants to know: is this campaign delivering, on schedule, in the right locations?
+**Finance** wants budget, spend, and revenue.
+**Performance** wants impressions, CTR, and conversions.
+
+One table, one dataset, three mental models. The default answer to this is to keep adding columns until everyone's data is technically there. That works until the table is 30 columns wide, the campaign name scrolls off-screen, and every team spends the first minute of every session hunting for the five columns they actually care about.
+
+![Every team needs a different slice of the same columns — everyone’s data is in the table, nobody’s view is](/images/nexa-tables-problem-columns.png)
+
+## My Role
+
+I owned this end-to-end — the UX, the interaction design, and the front-end implementation of the shared table component — working with a domain expert who answered business-rule questions about what each team actually needs to see. That combination mattered here: most of the interesting problems in a data table live in the gap between the mockup and the browser.
+
+## The Insight
+
+The problem was never that users needed *more* columns. They needed the *right* columns — and "right" changed depending on who was looking.
+
+[CONFIRM: one or two sentences on where this came from — e.g. "Watching Operations and Finance use the same screen made it obvious: each team was scrolling past most of the table to reach their five columns." Replace with what actually happened.]
+
+## The Hard Decision
+
+The obvious move was three tables: an Operations table, a Finance table, a Performance table. Each one clean, each one tuned for its audience. It's easy to design, easy to demo, and it would have looked great in a review.
+
+I didn't build it that way. Three tables means three components to maintain, three sets of bugs, and a hard-coded opinion about what each role needs — which breaks the first time a Finance user needs one Performance column. And the next screen that needs a table would have started that argument all over again.
+
+So I built one table framework with four controls instead: **saved views, column management, density, and sticky columns.** The trade-off is real — a configurable table asks more of the user up front than a pre-tuned one. The answer was strong defaults: every view opens in a sensible state, and configuration is there when someone needs it, not something they have to do before they can work.
+
+![Three team-specific tables vs one configurable component serving every team’s view](/images/nexa-tables-decision.png)
+
+## What I Built
+
+### Saved views
+
+Users shape the table once and get back to that shape in one click. A view captures which columns are visible, their order, and the density — so "my Finance setup" is a dropdown choice, not five minutes of rearranging every morning.
+
+![Saved views dropdown — the active view, and saving the current setup as your own](/images/nexa-tables-saved-views-dropdown.png)
+
+### Column management
+
+A drawer for showing, hiding, and reordering columns, with a reset that always gets you back to a known state. The reset matters more than it looks: people only experiment with a configurable UI when they trust they can undo it.
+
+![Column management drawer — shown count, locked columns, drag to reorder, one-click reset](/images/nexa-tables-columns-panel.png)
+
+### Density control
+
+Two densities — **Comfortable (56px rows)** and **Compact (48px rows)**. Operations scanning delivery status benefits from breathing room; someone reconciling spend across dozens of campaigns wants as many rows on screen as possible. Two modes, not three: a third option would have been a choice nobody could explain the difference of.
+
+![Comfortable (56px rows) vs Compact (48px rows) — same space, one more row every six](/images/nexa-tables-density-compare.png)
+
+### Sticky columns
+
+On a wide table, the first thing to scroll out of view is the campaign name — the one column that tells you what you're looking at. Sticky columns keep identity anchored while the data scrolls, so a user at column 14 still knows which campaign column 14 belongs to.
+
+![Start of the table vs scrolled right — status and campaign name stay pinned](/images/nexa-tables-sticky-scroll.png)
+
+## The Bug That Only Exists in the Browser
+
+The moment sticky columns and horizontal scrolling went in, the menus broke. Open one near the table’s edge and it got cut off: half a dropdown, with no way to reach the options underneath.
+
+The cause was structural, not visual. To scroll horizontally, the table lives inside containers that clip whatever spills out of them: `overflow-x: auto` on the scroll wrapper, and `overflow: hidden` on the shell and on the cells themselves. Anything rendered inside a clipping container is clipped by it. Nudging `z-index` can’t fix that: `z-index` changes stacking order, not clipping.
+
+So menus stopped living inside the table. Each panel is `position: fixed`, placed from the trigger’s position on screen, which lets it escape every clipping container in the chain.
+
+That fixed the clipping and exposed a second problem. Row menus open from the sticky Name cell, and that cell sits on its own `z-index: 2` layer. The menu escaped the clipping but not the layer, so it painted underneath the rows below it. The fix was one rule: while a row’s menu is open, its sticky cell rises to `z-index: 40`.
+
+This is the kind of problem a static mockup never shows you. The design was right; it just didn’t survive contact with the layout engine until I understood why. And it took understanding two browser mechanisms, clipping and stacking, not one.
+
+![Clipped by the table → hidden under the rows → escapes and stays on top](/images/nexa-tables-menu-fixes.png)
+
+## Built as a System, Not a Screen
+
+All of this lives in one shared component, `PortalTableComponent`, rather than being rebuilt per page:
+
 ```
-
----
-
-# 02. THE OPPORTUNITY
-
-## Goal
-
-Explain why the project existed.
-
-## Visual 02 — Problem Diagram
-
-```md
-[IMAGE_02_PROBLEM_DIAGRAM]
-
-Campaign Data
-
-          ↓
-
- ┌────────────┐
- │ Operations │
- └────────────┘
-
- ┌────────────┐
- │  Finance   │
- └────────────┘
-
- ┌────────────┐
- │Performance │
- └────────────┘
-
-Different Needs
-Same Table
-```
-
----
-
-# 03. UNDERSTANDING USERS
-
-## Goal
-
-Show stakeholder groups.
-
-## Visual 03 — Stakeholder Cards
-
-```md
-[IMAGE_03_STAKEHOLDERS]
-
-Operations
-- Delivery
-- Schedule
-- Geography
-
-Finance
-- Budget
-- Spend
-- Revenue
-
-Performance
-- Impressions
-- CTR
-- Conversions
-```
-
-Layout:  
-3 Cards Side-by-Side
-
----
-
-# 04. KEY INSIGHT
-
-## Goal
-
-Communicate the core finding.
-
-## Visual 04 — Insight Statement
-
-```md
-[IMAGE_04_INSIGHT]
-
-❌ Users Need More Columns
-
-↓
-
-✅ Users Need The Right Columns
-```
-
-Style:  
-Large Typography  
-Minimal Design  
-Poster Layout
-
----
-
-# 05. DESIGN PRINCIPLES
-
-## Goal
-
-Show the strategic framework.
-
-## Visual 05 — Principles Grid
-
-```md
-[IMAGE_05_PRINCIPLES]
-
-Flexibility
-
-Persistence
-
-Efficiency
-
-Scalability
-```
-
-Layout:  
-4 Equal Cards
-
----
-
-# 06. DESIGN STRATEGY
-
-## Goal
-
-Present the solution architecture.
-
-## Visual 06 — Solution Framework
-
-```md
-[IMAGE_06_STRATEGY]
-
-Flexible Table Framework
-
-        │
-
- ┌──────┼──────┐
-
-Views
-
-Columns
-
-Density
-
-Sticky Columns
-```
-
-Style:  
-System Diagram
-
----
-
-# 07. SAVED VIEWS
-
-## Goal
-
-Show the evolution from idea to final solution.
-
-## Visual 07 — Exploration
-
-```md
-[IMAGE_07_SAVED_VIEWS_EXPLORATION]
-
-Concept A
-
-Concept B
-
-Concept C
-```
-
-Wireframes
-
----
-
-## Visual 08 — Final Saved Views
-
-```md
-[IMAGE_08_SAVED_VIEWS_FINAL]
-
-Dropdown
-Saved Views
-Custom Views
-Active State
-```
-
-High Fidelity
-
----
-
-## Visual 09 — Interaction Flow
-
-```md
-[IMAGE_09_SAVED_VIEWS_FLOW]
-
-Select View
-
-↓
-
-Customize
-
-↓
-
-Save
-
-↓
-
-Reuse
-```
-
-Flow Diagram
-
----
-
-# 08. COLUMN MANAGEMENT
-
-## Goal
-
-Show customization capabilities.
-
-## Visual 10 — Wireframe
-
-```md
-[IMAGE_10_COLUMN_WIREFRAME]
-```
-
-Low Fidelity
-
----
-
-## Visual 11 — Final Drawer
-
-```md
-[IMAGE_11_COLUMN_DRAWER]
-```
-
-High Fidelity
-
----
-
-## Visual 12 — States
-
-```md
-[IMAGE_12_COLUMN_STATES]
-
-Default
-
-Reordered
-
-Hidden
-
-Reset
-```
-
-Multi-State Comparison
-
----
-
-# 09. DENSITY CONTROL
-
-## Goal
-
-Show how users control information density.
-
-## Visual 13 — Density Comparison
-
-```md
-[IMAGE_13_DENSITY]
-
-Comfortable
-56px
-
-VS
-
-Compact
-48px
-```
-
-Side-by-Side
-
----
-
-# 10. STICKY COLUMNS
-
-## Goal
-
-Show usability improvement.
-
-## Visual 14 — Before
-
-```md
-[IMAGE_14_STICKY_BEFORE]
-```
-
-Campaign Name Lost
-
----
-
-## Visual 15 — After
-
-```md
-[IMAGE_15_STICKY_AFTER]
-```
-
-Campaign Name Visible
-
----
-
-## Visual 16 — Comparison
-
-```md
-[IMAGE_16_STICKY_COMPARISON]
-
-Lost Context
-
-↓
-
-Maintained Context
-```
-
----
-
-# 11. ENGINEERING CHALLENGE
-
-## Goal
-
-Demonstrate problem solving.
-
-## Visual 17 — Overflow Bug
-
-```md
-[IMAGE_17_BUG]
-```
-
-Broken State Screenshot
-
----
-
-## Visual 18 — Root Cause
-
-```md
-[IMAGE_18_ROOT_CAUSE]
-
-Overflow Hidden
-
-↓
-
-Dropdown Clipped
-```
-
-Technical Diagram
-
----
-
-## Visual 19 — Fixed Solution
-
-```md
-[IMAGE_19_FIXED]
-```
-
-Working Version
-
----
-
-# 12. SYSTEM THINKING
-
-## Goal
-
-Demonstrate scalable design.
-
-## Visual 20 — Component Anatomy
-
-```md
-[IMAGE_20_COMPONENT_ANATOMY]
-
-Toolbar
-
-Views
-
-Columns
-
-Density
-
-Filters
-
-Pagination
-```
-
----
-
-## Visual 21 — Architecture Diagram
-
-```md
-[IMAGE_21_ARCHITECTURE]
-
 PortalTableComponent
-
-├ Views
+├ Saved views
 ├ Columns
 ├ Density
+├ Sticky columns
 ├ Sorting
-├ Filters
+├ Search & filters
 ├ Pagination
-├ Bulk Actions
-└ Sticky Columns
+├ Bulk actions
+├ Totals row
+└ Row menus (⋯ and right-click)
 ```
 
----
+Some consistency can’t be delivered by a component, only by a rule. So the table also carries written conventions: identifier columns are labelled `ID`, left-aligned, and never number-formatted (so ID `12345` never renders as `12,345`), and tables with sequential IDs default to newest-first before the first render, not after the first click.
 
-# 13. ADOPTION
+The result: the same component now runs **52 tables across 30 screens**, from campaigns and creative libraries to sites, roles and the alerts center. One set of behaviors to learn, everywhere.
 
-## Goal
+![One component across 52 tables and 30 screens — Sponsored Campaigns, Ad Groups, Creative Library, Targeting Profiles, Sites and Roles](/images/nexa-tables-adoption-grid.png)
 
-Show reusability.
+## The Result
 
-## Visual 22 — Sponsored Campaigns
+- **One component behind 52 tables on 30 screens**, instead of a table rebuilt per page.
+- **Saved views on 19 screens**, so every team can return to its own setup in one click.
+- **New table screens start finished:** columns, density, sticky identity, sorting and pagination come with the component.
 
-```md
-[IMAGE_22_CAMPAIGNS]
-```
+## What I Learned
 
----
+Enterprise users don't want a simpler interface. They want an interface that fits *their* job — and in a product used by three teams, that means building something that can bend without breaking.
 
-## Visual 23 — Ad Groups
-
-```md
-[IMAGE_23_ADGROUPS]
-```
-
----
-
-## Visual 24 — Campaign Intelligence
-
-```md
-[IMAGE_24_INTELLIGENCE]
-```
-
-Display all three side-by-side.
-
----
-
-# 14. FINAL SHOWCASE
-
-## Goal
-
-Showcase final polish.
-
-## Visual 25
-
-```md
-[IMAGE_25_FINAL_01]
-```
-
----
-
-## Visual 26
-
-```md
-[IMAGE_26_FINAL_02]
-```
-
----
-
-## Visual 27
-
-```md
-[IMAGE_27_FINAL_03]
-```
-
----
-
-## Visual 28
-
-```md
-[IMAGE_28_FINAL_04]
-```
-
----
-
-## Visual 29
-
-```md
-[IMAGE_29_FINAL_05]
-```
-
-Large High-Fidelity Screens
-
-No Explanations
-
----
-
-# 15. IMPACT
-
-## Goal
-
-Highlight outcomes.
-
-## Visual 30 — Impact Metrics
-
-```md
-[IMAGE_30_IMPACT]
-
-3 Products
-
-1 Framework
-
-Shared UX Patterns
-
-Scalable Foundation
-```
-
-Metric Cards
-
----
-
-# 16. REFLECTION
-
-## Goal
-
-End with a memorable takeaway.
-
-## Visual 31 — Closing Composition
-
-```md
-[IMAGE_31_REFLECTION]
-
-Montage of:
-
-- Saved Views
-- Density
-- Columns
-- Sticky Columns
-```
-
-Include Quote:
-
-"The best enterprise experiences are not built by creating more interfaces. They are built by creating more adaptable interfaces."
-
----
-
-# TOTAL VISUALS
-
-01 Hero
-
-02 Problem
-
-03 Stakeholders
-
-04 Insight
-
-05 Principles
-
-06 Strategy
-
-07 Exploration
-
-08 Saved Views
-
-09 Flow
-
-10 Wireframe
-
-11 Drawer
-
-12 States
-
-13 Density
-
-14 Before
-
-15 After
-
-16 Comparison
-
-17 Bug
-
-18 Root Cause
-
-19 Fix
-
-20 Anatomy
-
-21 Architecture
-
-22 Campaigns
-
-23 Ad Groups
-
-24 Intelligence
-
-25 Final
-
-26 Final
-
-27 Final
-
-28 Final
-
-29 Final
-
-30 Impact
-
-31 Reflection
-
-Total: 31 Portfolio Visuals
+The best enterprise experiences aren't built by creating more interfaces. They're built by creating more adaptable ones.
