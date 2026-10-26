@@ -29,7 +29,7 @@ In a retail media platform, the campaign table is where most of the day actually
 
 **Operations** wants to know: is this campaign delivering, on schedule, on the right screens? **Finance** wants budget, spend, and what's left. **Performance** wants impressions, plays, and views.
 
-One table, one dataset, three mental models. The default answer to this is to keep adding columns until everyone's data is technically there. That works until the table is 30 columns wide, the campaign name scrolls off-screen, and every team spends the first minute of every session hunting for the five columns they actually care about.
+One table, one dataset, three mental models. The default answer to this is to keep adding columns until everyone's data is technically there. That works until the table is 14 columns wide, the campaign name scrolls off-screen, and every team spends the first minute of every session hunting for the five columns they actually care about.
 
 ![Every team needs a different slice of the same columns — everyone’s data is in the table, nobody’s view is](/images/nexa-tables-problem-columns.png)
 
@@ -44,7 +44,7 @@ The problem was never that users needed *more* columns. They needed the *right* 
 Watching each team work made it obvious: everyone was scrolling past most of the table to reach their own five columns.
 
 ![Same rows, same component — Operations view vs Performance view](/images/nexa-tables-hero-views.png)
-*Same rows, same component. Operations sees delivery and receipt progress; Performance sees reach and spend.*
+*Operations sees delivery and receipt progress; Performance sees reach and spend.*
 
 ## The Hard Decision
 

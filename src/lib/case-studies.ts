@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { imageSize } from "image-size";
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), "content/case-studies");
 
@@ -49,6 +50,17 @@ export function getAllCaseStudies(): MdCaseStudy[] {
     .filter((f) => f.endsWith(".md"))
     .map(readCaseStudyFile)
     .sort((a, b) => a.index.localeCompare(b.index));
+}
+
+/** Intrinsic size of an image in /public, or null if it isn't a readable local file. */
+export function getPublicImageSize(src: string): { width: number; height: number } | null {
+  if (!src.startsWith("/")) return null;
+  try {
+    const { width, height } = imageSize(fs.readFileSync(path.join(process.cwd(), "public", src)));
+    return width && height ? { width, height } : null;
+  } catch {
+    return null;
+  }
 }
 
 export function getCaseStudy(slug: string): MdCaseStudy | undefined {

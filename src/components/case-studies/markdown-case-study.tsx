@@ -1,22 +1,44 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Tag from "@/components/ui/tag";
 import ImageLightbox from "./image-lightbox";
-import type { MdCaseStudy } from "@/lib/case-studies";
+import { getPublicImageSize, type MdCaseStudy } from "@/lib/case-studies";
 
-const md: Components = {
-  img: ({ src, alt }) => (
-    <span className="block my-8">
-      <img
+// Images break out of the text column to 1100px on desktop; full column width on mobile.
+const imageFrame =
+  "block my-8 lg:relative lg:left-1/2 lg:-translate-x-1/2 lg:w-[min(1100px,calc(100vw-4rem))]";
+const imageClass = "w-full h-auto rounded-xl border border-white/[0.06]";
+
+function CaseStudyImage({ src, alt, eager }: { src: string; alt: string; eager: boolean }) {
+  const size = getPublicImageSize(src);
+  if (!size) {
+    return (
+      <span className={imageFrame}>
+        <img src={src} alt={alt} className={imageClass} loading={eager ? "eager" : "lazy"} />
+      </span>
+    );
+  }
+  return (
+    <span className={imageFrame}>
+      <Image
         src={src}
-        alt={alt ?? ""}
-        className="w-full rounded-xl border border-white/[0.06]"
-        loading="lazy"
+        alt={alt}
+        width={size.width}
+        height={size.height}
+        sizes="(min-width: 1024px) min(1100px, calc(100vw - 4rem)), calc(100vw - 3rem)"
+        className={imageClass}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : undefined}
+        data-full={src}
       />
     </span>
-  ),
+  );
+}
+
+const md: Components = {
   h2: ({ children }) => (
     <h2 className="mt-16 mb-5 pt-10 border-t border-white/[0.06] font-display text-2xl lg:text-3xl font-semibold text-primary first:mt-0 first:border-t-0 first:pt-0">
       {children}
@@ -111,6 +133,16 @@ export default function MarkdownCaseStudy({
   basePath: string;
   backLabel: string;
 }) {
+  // The first image is above the fold: load it eagerly, lazy-load the rest.
+  const firstImage = cs.content.match(/!\[[^\]]*\]\(([^)\s]+)/)?.[1];
+  const components: Components = {
+    ...md,
+    img: ({ src, alt }) =>
+      typeof src === "string" ? (
+        <CaseStudyImage src={src} alt={alt ?? ""} eager={src === firstImage} />
+      ) : null,
+  };
+
   return (
     <article>
       {/* Hero */}
@@ -149,7 +181,7 @@ export default function MarkdownCaseStudy({
       {/* Content */}
       <div className="max-w-3xl mx-auto px-6 py-16 lg:py-24">
         <ImageLightbox>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={md}>{cs.content}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{cs.content}</ReactMarkdown>
         </ImageLightbox>
       </div>
 

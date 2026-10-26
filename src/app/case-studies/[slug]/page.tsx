@@ -11,6 +11,7 @@ import {
   getRichCaseStudySlugs,
   getAllCaseStudies,
   getCaseStudy,
+  getPublicImageSize,
   type CaseStudy,
 } from "@/lib/case-studies";
 
@@ -37,9 +38,24 @@ export async function generateMetadata({
   }
   const mdCs = getCaseStudy(slug);
   if (mdCs) {
+    const coverSize = mdCs.cover ? getPublicImageSize(mdCs.cover) : null;
+    const images = mdCs.cover ? [{ url: mdCs.cover, alt: mdCs.title, ...coverSize }] : undefined;
     return {
       title: `${mdCs.title} — Case Study`,
       description: mdCs.summary,
+      openGraph: {
+        type: "article",
+        url: `/case-studies/${mdCs.slug}`,
+        title: mdCs.title,
+        description: mdCs.summary,
+        images,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: mdCs.title,
+        description: mdCs.summary,
+        images,
+      },
     };
   }
   return {};
