@@ -9,6 +9,9 @@ next: designguard
 
 > Part of the [Retail Media Network Portal](https://aashour.com/case-studies/retail-media-network-portal) project.
 
+![The campaign table — saved views, column management, density control and sticky columns](/images/nexa-tables-cover.png)
+*The final campaign table: saved views, column management, density control and sticky columns, all from one shared component.*
+
 ## At a glance
 
 | | |
