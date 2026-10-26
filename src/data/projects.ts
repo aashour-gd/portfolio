@@ -50,7 +50,7 @@ export const projects: Project[] = [
     href: "/work/designguard",
   },
   {
-    slug: "configurable-data-table",
+    slug: "Flexible-Data-Tables",
     title: "Flexible Data Tables for Enterprise Retail Media",
     category: "UI/UX Design",
     year: "2025",
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     featured: true,
     gradient: "from-indigo-900/50 via-blue-900/30 to-transparent",
     cover: "/images/nexa-tables-cover.png",
-    href: "/work/configurable-data-table",
+    href: "/work/Flexible-Data-Tables",
   },
   {
     slug: "campaign-intelligence-dashboard",
