@@ -16,6 +16,8 @@ export type MdCaseStudy = {
   content: string;
   cover?: string;
   unlisted?: boolean;
+  /** Slug to link as "Next", overriding file order. */
+  next?: string;
 };
 
 function readCaseStudyFile(filename: string): MdCaseStudy {
@@ -37,6 +39,7 @@ function readCaseStudyFile(filename: string): MdCaseStudy {
     content: body,
     cover: data.cover ?? undefined,
     unlisted: data.unlisted === true,
+    next: data.next ?? undefined,
   };
 }
 

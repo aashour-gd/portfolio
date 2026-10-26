@@ -4,12 +4,10 @@ summary: "One table, three teams, three different jobs — designing a table tha
 tags: ["Product Design", "Enterprise UX", "Design Systems", "Data Tables"]
 product: "Nexa"
 cover: /images/nexa-tables-cover.png
+next: designguard
 ---
 
 > Part of the [Retail Media Network Portal](https://aashour.com/case-studies/retail-media-network-portal) project.
-
-![The campaign table — saved views, column management, density control and sticky columns](/images/nexa-tables-hero-views.png)
-*The final campaign table: saved views, column management, density control and sticky columns, all from one shared component.*
 
 ## At a glance
 
@@ -18,7 +16,7 @@ cover: /images/nexa-tables-cover.png
 | **My role** | Solo — UX, interaction design, and front-end implementation |
 | **Users** | Operations, Finance, and Performance teams |
 | **Built with** | Angular, the shared `PortalTableComponent`, design tokens, Storybook |
-| **Used in** | Sponsored Campaigns, Ad Groups, Campaign Intelligence |
+| **Used in** | 52 tables across 30 screens |
 
 ---
 
@@ -26,9 +24,7 @@ cover: /images/nexa-tables-cover.png
 
 In a retail media platform, the campaign table is where most of the day actually happens. And three teams open the same table to do three completely different jobs.
 
-**Operations** wants to know: is this campaign delivering, on schedule, in the right locations?
-**Finance** wants budget, spend, and revenue.
-**Performance** wants impressions, CTR, and conversions.
+**Operations** wants to know: is this campaign delivering, on schedule, on the right screens? **Finance** wants budget, spend, and what's left. **Performance** wants impressions, plays, and views.
 
 One table, one dataset, three mental models. The default answer to this is to keep adding columns until everyone's data is technically there. That works until the table is 30 columns wide, the campaign name scrolls off-screen, and every team spends the first minute of every session hunting for the five columns they actually care about.
 
@@ -42,7 +38,10 @@ I owned this end-to-end — the UX, the interaction design, and the front-end im
 
 The problem was never that users needed *more* columns. They needed the *right* columns — and "right" changed depending on who was looking.
 
-[CONFIRM: one or two sentences on where this came from — e.g. "Watching Operations and Finance use the same screen made it obvious: each team was scrolling past most of the table to reach their five columns." Replace with what actually happened.]
+Watching each team work made it obvious: everyone was scrolling past most of the table to reach their own five columns.
+
+![Same rows, same component — Operations view vs Performance view](/images/nexa-tables-hero-views.png)
+*Same rows, same component. Operations sees delivery and receipt progress; Performance sees reach and spend.*
 
 ## The Hard Decision
 
@@ -58,19 +57,19 @@ So I built one table framework with four controls instead: **saved views, column
 
 ### Saved views
 
-Users shape the table once and get back to that shape in one click. A view captures which columns are visible, their order, and the density — so "my Finance setup" is a dropdown choice, not five minutes of rearranging every morning.
+Users shape the table once and get back to that shape in one click. A view captures which columns are visible and their order — so "my Operations setup" is a dropdown choice, not five minutes of rearranging every morning.
 
 ![Saved views dropdown — the active view, and saving the current setup as your own](/images/nexa-tables-saved-views-dropdown.png)
 
 ### Column management
 
-A drawer for showing, hiding, and reordering columns, with a reset that always gets you back to a known state. The reset matters more than it looks: people only experiment with a configurable UI when they trust they can undo it.
+A drawer for showing, hiding, and reordering columns, with a reset that always gets you back to a known state. Status and Name are locked on: you can rearrange everything else, but you can never hide the columns that tell you what a row is. The reset matters more than it looks: people only experiment with a configurable UI when they trust they can undo it.
 
 ![Column management drawer — shown count, locked columns, drag to reorder, one-click reset](/images/nexa-tables-columns-panel.png)
 
 ### Density control
 
-Two densities — **Comfortable (56px rows)** and **Compact (48px rows)**. Operations scanning delivery status benefits from breathing room; someone reconciling spend across dozens of campaigns wants as many rows on screen as possible. Two modes, not three: a third option would have been a choice nobody could explain the difference of.
+Two densities — **Comfortable (56px rows)** and **Compact (48px rows)**. Operations scanning delivery status benefits from breathing room; someone reconciling spend across dozens of campaigns wants as many rows on screen as possible. Two modes, not three: a third option would have been a difference nobody could see, let alone explain.
 
 ![Comfortable (56px rows) vs Compact (48px rows) — same space, one more row every six](/images/nexa-tables-density-compare.png)
 
