@@ -37,8 +37,8 @@
       "endDate": "2026-10",
       "summary": "Retail media platform that turns retailers' in-store screens, audio and signage into an advertising network, live across 61,000+ media points on three continents. Joined as the sole designer and grew into Head of UX, owning design across the full product suite.",
       "highlights": [
-        "Led design and delivery of 3 core B2B SaaS products from 0→1, supporting operations across Saudi Arabia, UAE and Egypt, shipped within a 12-month runway.",
-        "Co-built the Intouch Live Design System with Figma Variables, Auto Layout and a 44-component library, reducing handoff friction and UI bug reports across 3 engineering squads.",
+        "Led design and delivery of 3 core B2B SaaS products from 0→1, now live for retailers across Europe, Latin America and MENA (incl. Saudi Arabia and UAE).",
+        "Co-built Intouch's design system with Figma Variables, Auto Layout and a 44-component library, reducing handoff friction and UI bug reports across 3 engineering squads.",
         "Drove a 40% improvement in user retention through a data-informed redesign of core flows, validated with usability testing and product analytics.",
         "Built and led the UX team: design process, critique cadence and cross-functional workflow with PMs and engineers in Agile.",
         "Owned design strategy for mobile and web, from discovery and problem framing through IA, interaction design and Figma Dev Mode handoff."
@@ -74,9 +74,9 @@
   ],
   "projects": [
     {
-      "name": "Nexa: two-sided retail media platform",
-      "description": "Retailer operations console and advertiser self-serve portal, served from one codebase.",
-      "url": "https://aashour.com/work/retail-media-network-portal"
+      "name": "Nexa (renamed for confidentiality)",
+      "description": "Two-sided retail media platform: retailer operations console and advertiser self-serve portal, served from one codebase.",
+      "url": "https://aashour.com/case-studies/campaign-intelligence-and-alerts"
     },
     {
       "name": "A Design System for Two Products",
