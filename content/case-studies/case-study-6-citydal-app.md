@@ -3,6 +3,7 @@ title: "CityDal — Brand Identity"
 summary: "Complete brand guidelines for a city-discovery app — logo, color system, typography, patterns, iconography, stationery, merchandise, and social templates, all shipped as Version 1.0 in July 2023."
 tags: ["Brand Identity", "Logo Design", "Visual System", "Graphic Design"]
 product: "CityDal"
+unlisted: true
 ---
 
 # CityDal — Brand Identity

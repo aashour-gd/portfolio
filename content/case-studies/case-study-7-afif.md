@@ -3,6 +3,7 @@ title: "AFIF — Protecting Innocence"
 summary: "End-to-end UX/UI design for a child safety app that lets parents monitor their children's online activity, location, and device health in real time."
 tags: ["Mobile Design", "UX Research", "Product Design", "Child Safety"]
 product: "AFIF"
+unlisted: true
 ---
 
 # AFIF — Protecting Innocence
