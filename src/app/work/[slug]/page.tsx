@@ -23,7 +23,7 @@ export default async function CaseStudyPage(props: { params: Promise<{ slug: str
   const cs = getCaseStudy(slug);
   if (!cs) notFound();
 
-  const all = getAllCaseStudies();
+  const all = getAllCaseStudies().filter((c) => !c.unlisted || c.slug === slug);
   const idx = all.findIndex((c) => c.slug === slug);
   const prev = all[idx - 1];
   const next = all.find((c) => c.slug === cs.next) ?? all[(idx + 1) % all.length];

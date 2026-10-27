@@ -3,6 +3,7 @@ title: "Campaign Intelligence Dashboard"
 summary: "A triage-first dashboard tab that turns raw campaign data into health signals, ranked recommendations, and a cross-tab filtered workspace."
 tags: ["Dashboard Design", "Information Architecture", "Data Visualization"]
 product: "Intouch Ant Live Portal"
+unlisted: true
 ---
 
 # Case Study: From Data to Decisions — A Campaign Intelligence Dashboard

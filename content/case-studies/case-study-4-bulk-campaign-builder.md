@@ -3,6 +3,7 @@ title: "Bulk Campaign Builder"
 summary: "A spreadsheet-style bulk editor for dozens of campaigns at once, balancing power-user density with sticky orientation cues and the product's existing patterns."
 tags: ["Power-User Tools", "Interaction Design", "Data Grids"]
 product: "Intouch Ant Live Portal"
+unlisted: true
 ---
 
 # Case Study: Designing Dense Editing Surfaces — The Bulk Campaign Builder

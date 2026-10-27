@@ -3,6 +3,7 @@ title: "Dual-Mode Design Token System"
 summary: "A theming and accessibility audit that fixed dark-mode contrast failures and consolidated a one-off status badge into the shared, token-driven design system."
 tags: ["Design Tokens", "Accessibility", "Theming"]
 product: "Intouch Ant Live Portal"
+unlisted: true
 ---
 
 # Case Study: Theming & Accessibility Audit — Building a Dual-Mode Design Token System

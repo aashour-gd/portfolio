@@ -40,7 +40,7 @@ function ProductCard({ item }: { item: MarketplaceItem }) {
         </p>
         <div className="flex items-center justify-between">
           <span className="font-body text-xs text-dim flex items-center gap-1.5">
-            <Download size={12} /> {item.downloads}
+            {item.price}
           </span>
           {(() => {
             const label = item.price === "Free" ? "Download" : "Buy Now";

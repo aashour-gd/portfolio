@@ -80,7 +80,7 @@ export default function MarketplacePreview() {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="font-body text-xs text-dim">
-                    {item.downloads} downloads
+                    {item.price}
                   </span>
                   {item.url ? (
                     <a

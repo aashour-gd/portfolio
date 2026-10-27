@@ -3,6 +3,7 @@ title: "Intouch Live — Retail Media Network Platform"
 summary: "A unified platform that replaced 4+ fragmented legacy systems for retailers managing digital signage advertising networks, reducing creative approval time by 40%."
 tags: ["Product Design", "Enterprise UX", "Design Systems", "Retail Media"]
 product: "Intouch Live (TBS)"
+unlisted: true
 ---
 
 # Intouch Live — Designing a Unified Retail Media Network Platform
