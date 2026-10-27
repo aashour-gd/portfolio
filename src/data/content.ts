@@ -1,4 +1,6 @@
 // Edit this file to personalize your portfolio.
+// Career history and the CV PDF live in src/data/cv.json, not here.
+import { CV_PDF_URL } from "./cv";
 
 export const profile = {
   name: "Ahmed Ashour",
@@ -9,7 +11,7 @@ export const profile = {
   available: true,
   bio: "I'm a Cairo-based Senior Product Designer with over a decade of experience creating digital products across OTT platforms, media networks, retail, advertising, and SaaS. Great design is more than visuals — it's about empathy, storytelling, and problem-solving.",
   email: "aashour.gd@gmail.com",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: CV_PDF_URL,
 };
 
 export const stats = [
@@ -51,23 +53,3 @@ export const tools = [
   "HTML / CSS", "React",
 ];
 
-export const timeline = [
-  {
-    year: "2021 – Present",
-    role: "Lead Product Designer",
-    company: "Intouch (TBS)",
-    description: "Leading design for Intouch Live — a retail media network platform replacing 4+ legacy systems. Built the DIESL design system, Campaign Intelligence Dashboard, and end-to-end campaign workflows. Reduced creative approval time by 40%.",
-  },
-  {
-    year: "2019 – 2021",
-    role: "UI/UX Designer",
-    company: "Freelance",
-    description: "Worked with startups and agencies across OTT, retail, and media on mobile apps, SaaS dashboards, and pharmacy management systems (Nodens, Wegather, Capsulah).",
-  },
-  {
-    year: "2018 – 2019",
-    role: "Graphic Designer",
-    company: "Creative Studio",
-    description: "Visual identity, print, and digital campaigns for regional brands. First steps into product thinking via mobile app UI work.",
-  },
-];

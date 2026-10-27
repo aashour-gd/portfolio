@@ -1,0 +1,200 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Ahmed Ashour",
+    "label": "Senior Product Designer",
+    "headline": "Engineering-trained product designer · Design systems · 10+ years shipping SaaS, mobile and e-commerce products",
+    "email": "aashour.gd@gmail.com",
+    "phone": "+20 102 8010 352",
+    "url": "https://aashour.com",
+    "summary": "I studied Electronics & Communications Engineering, so I design the way an engineer thinks: start with constraints, trace the failure modes, then build the system. Over 10+ years I've taken three B2B SaaS products from 0→1, co-built a Figma-native design system used across three engineering squads, and built and led a UX team while still designing hands-on every day.",
+    "location": {
+      "city": "Cairo",
+      "countryCode": "EG",
+      "region": "Egypt"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "aashour-gd",
+        "url": "https://www.linkedin.com/in/aashour-gd/"
+      },
+      {
+        "network": "GitHub",
+        "username": "aashour-gd",
+        "url": "https://github.com/aashour-gd"
+      }
+    ],
+    "availability": "Available immediately · Open to relocation",
+    "targets": "Senior & Lead Product Designer roles · Saudi Arabia & Gulf · Remote Europe · Egypt"
+  },
+  "work": [
+    {
+      "name": "Intouch",
+      "position": "Senior Product Designer · Head of UX",
+      "location": "El Gouna, Egypt",
+      "startDate": "2020-08",
+      "endDate": "2026-10",
+      "summary": "Retail media platform that turns retailers' in-store screens, audio and signage into an advertising network, live across 61,000+ media points on three continents. Joined as the sole designer and grew into Head of UX, owning design across the full product suite.",
+      "highlights": [
+        "Led design and delivery of 3 core B2B SaaS products from 0→1, supporting operations across Saudi Arabia, UAE and Egypt, shipped within a 12-month runway.",
+        "Co-built the Intouch Live Design System with Figma Variables, Auto Layout and a 44-component library, reducing handoff friction and UI bug reports across 3 engineering squads.",
+        "Drove a 40% improvement in user retention through a data-informed redesign of core flows, validated with usability testing and product analytics.",
+        "Built and led the UX team: design process, critique cadence and cross-functional workflow with PMs and engineers in Agile.",
+        "Owned design strategy for mobile and web, from discovery and problem framing through IA, interaction design and Figma Dev Mode handoff."
+      ]
+    },
+    {
+      "name": "Inmobly",
+      "position": "UX/UI Designer → Senior UX/UI Designer",
+      "location": "Cairo, Egypt",
+      "startDate": "2013-08",
+      "endDate": "2020-08",
+      "summary": "Product studio building consumer and enterprise mobile apps for clients across MENA and Europe.",
+      "highlights": [
+        "Redesigned UX flows for 6+ consumer mobile apps using Jobs-to-be-Done framing and iterative usability testing, improving task completion and reducing onboarding drop-off.",
+        "Built and maintained design systems for client products (reusable components, brand tokens, pattern libraries), cutting production time across projects.",
+        "Ran the UX process end to end: research, journey mapping, wireframes, high-fidelity Figma prototypes and direct client design reviews.",
+        "Moved the team's handoff from Zeplin to Figma-native annotations, working closely with front-end engineers on implementation accuracy.",
+        "Mentored junior designers and shaped the team's critique and iteration culture."
+      ]
+    },
+    {
+      "name": "Freelance & contract",
+      "position": "Senior UX/UI Designer",
+      "location": "Cairo, Egypt",
+      "startDate": "2016-02",
+      "endDate": "2021-10",
+      "summary": "Client work alongside full-time roles, for Nodens (B2B) and Smardex (fintech).",
+      "highlights": [
+        "Designed a custom CRM interface on Odoo for Nodens, balancing functional complexity with usable UI patterns.",
+        "Delivered brand systems, campaign assets, reusable UI components and After Effects motion assets for web and mobile marketing."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Nexa: two-sided retail media platform",
+      "description": "Retailer operations console and advertiser self-serve portal, served from one codebase.",
+      "url": "https://aashour.com/work/retail-media-network-portal"
+    },
+    {
+      "name": "A Design System for Two Products",
+      "description": "44 shared components and 75 tokens per mode, with per-product branding derived from one token set.",
+      "url": "https://aashour.com/case-studies/design-system-two-products"
+    },
+    {
+      "name": "DesignGuard",
+      "description": "AI-powered design QA CLI that catches design inconsistencies in Figma files before they reach developers.",
+      "url": "https://github.com/aashour-gd/designguard"
+    },
+    {
+      "name": "AFIF",
+      "description": "Child safety app, live on Google Play. Designed so children know when they are being monitored.",
+      "url": "https://aashour.com/case-studies/afif"
+    },
+    {
+      "name": "Medu Design System",
+      "description": "Free, production-ready Figma design system: tokens, 21 components, patterns and templates.",
+      "url": "https://www.figma.com/community/file/1677113048340520722/medu-design-system"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Design & Prototyping",
+      "keywords": [
+        "Figma (Variables, Auto Layout, Dev Mode, Components)",
+        "FigJam",
+        "Framer",
+        "ProtoPie"
+      ]
+    },
+    {
+      "name": "Design Systems",
+      "keywords": [
+        "Design Tokens",
+        "Component Libraries",
+        "Design Ops",
+        "Storybook handoff",
+        "Style Dictionary"
+      ]
+    },
+    {
+      "name": "UX Methods",
+      "keywords": [
+        "User Research",
+        "Usability Testing",
+        "Jobs-to-be-Done",
+        "Journey Mapping",
+        "Information Architecture",
+        "A/B Testing",
+        "Heuristic Evaluation",
+        "Design Sprints"
+      ]
+    },
+    {
+      "name": "AI-Assisted Design",
+      "keywords": [
+        "Built DesignGuard (AI design-QA CLI)",
+        "Claude Code",
+        "Claude Design",
+        "Figma AI",
+        "Prompt-to-prototype workflows"
+      ]
+    },
+    {
+      "name": "Analytics & Accessibility",
+      "keywords": [
+        "Maze",
+        "Mixpanel",
+        "Amplitude",
+        "Product Analytics",
+        "WCAG 2.2"
+      ]
+    },
+    {
+      "name": "Technical",
+      "keywords": [
+        "HTML/CSS",
+        "Next.js",
+        "Front-end collaboration",
+        "API integration"
+      ]
+    },
+    {
+      "name": "Collaboration",
+      "keywords": [
+        "Notion",
+        "Linear",
+        "Jira",
+        "Agile / Scrum"
+      ]
+    },
+    {
+      "name": "Visual & Motion",
+      "keywords": [
+        "Illustrator",
+        "Photoshop",
+        "After Effects"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Cairo University",
+      "studyType": "Bachelor of Science",
+      "area": "Electronics & Communications Engineering",
+      "endDate": "2014"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Google UX Design Professional Certificate",
+      "issuer": "Google"
+    },
+    {
+      "name": "UX Design Advanced Track + Web Development Challenger",
+      "issuer": "Udacity"
+    }
+  ]
+}

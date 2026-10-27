@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
-import { profile, timeline, tools, expertise } from "@/data/content";
+import { profile, tools, expertise } from "@/data/content";
+import { cv, formatCvRange } from "@/data/cv";
 
 export const metadata = {
   title: "About",
-  description: "Senior Product Designer with 5+ years in enterprise platforms, design systems, and creative direction.",
+  description: cv.basics.headline,
 };
 
 export default function AboutPage() {
@@ -27,7 +28,7 @@ export default function AboutPage() {
                 Hi, I'm {profile.name.split(" ")[0]}.
               </h1>
               <p className="font-body text-xl text-muted leading-relaxed mb-4">
-                {profile.bio}
+                {cv.basics.summary}
               </p>
               <p className="font-body text-base text-muted/80 leading-relaxed mb-8">
                 My work sits at the intersection of strategy, design systems, and user experience — building
@@ -68,21 +69,26 @@ export default function AboutPage() {
           <div className="relative">
             <div className="absolute left-0 top-2 bottom-2 w-px bg-white/[0.06] hidden sm:block" />
             <div className="flex flex-col gap-10">
-              {timeline.map((item, i) => (
-                <div key={i} className="sm:pl-10 relative">
+              {cv.work.map((job) => (
+                <div key={job.name + job.startDate} className="sm:pl-10 relative">
                   <div className="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-accent hidden sm:block" />
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-2">
                     <span className="font-body text-xs font-semibold text-accent uppercase tracking-wider">
-                      {item.year}
+                      {formatCvRange(job.startDate, job.endDate)}
                     </span>
                     <span className="hidden sm:block text-dim text-xs">·</span>
-                    <span className="font-display font-semibold text-primary">{item.role}</span>
+                    <span className="font-display font-semibold text-primary">{job.position}</span>
                     <span className="hidden sm:block text-dim text-xs">@</span>
-                    <span className="font-body text-sm text-accent-light">{item.company}</span>
+                    <span className="font-body text-sm text-accent-light">{job.name}</span>
                   </div>
-                  <p className="font-body text-sm text-muted leading-relaxed max-w-2xl">
-                    {item.description}
-                  </p>
+                  {job.summary && (
+                    <p className="font-body text-sm text-muted leading-relaxed max-w-2xl mb-2">{job.summary}</p>
+                  )}
+                  <ul className="font-body text-sm text-muted leading-relaxed max-w-2xl list-disc pl-5 space-y-1">
+                    {job.highlights.slice(0, 3).map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
