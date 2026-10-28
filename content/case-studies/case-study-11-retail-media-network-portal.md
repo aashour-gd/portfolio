@@ -183,7 +183,7 @@ Four pieces of this project are worth reading on their own:
 | Case study | What it covers |
 |---|---|
 | **[Two-sided product architecture](/case-studies/two-sided-product-architecture)** | One codebase, two audiences: what's shared, what diverges, and the two scoping bugs that proved the boundary was real |
-| **[A design system for two products](/case-studies/design-system-two-products)** | 45 components, semantic tokens, per-product theming, and the conventions that keep both products consistent |
+| **[A design system for two products](/case-studies/design-system-two-products)** | 44 components, semantic tokens, per-product theming, and the conventions that keep both products consistent |
 | **[Campaign intelligence & alerts](/case-studies/campaign-intelligence-and-alerts)** | Turning a PRD into a scoring model — pacing, creative and reach health, forecast, risk — and naming what couldn't honestly be built |
 | **[Specs as a conversation](/case-studies/specs-as-a-conversation)** | How I extracted business rules from a domain expert using annotated living documents instead of guessing |
 

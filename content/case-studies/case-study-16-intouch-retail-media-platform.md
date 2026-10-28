@@ -17,7 +17,7 @@ next: two-sided-product-architecture
 | **Company** | Intouch: retail media technology, founded 2015, HQ Dublin |
 | **When** | Aug 2020 – Oct 2026 · El Gouna, Egypt |
 | **Role** | Joined as the sole designer, Head of UX from mid-2022 |
-| **Team** | Built and led a UX team of three |
+| **Team** | Built and led a UX team of three, including me |
 | **Products** | Intouch Live (retailers) and Intouch Ads (advertisers), plus Spark, Platform and Play |
 | **Outcomes** | 3 core B2B products from 0→1 · 40% retention lift on Intouch Live over my last two years · a 44-component design system used by 3 engineering squads |
 
@@ -35,7 +35,7 @@ Most of my six years came back to that one tension: the same data means differen
 
 I joined in August 2020 as the only designer. Everything that needed design came to me: discovery, flows, UI, handoff.
 
-By mid-2022 I was Head of UX. I built and led a UX team of three, set up the design process and critique cadence, and worked with PMs and engineers in Agile, from problem framing through IA and interaction design to Figma Dev Mode handoff.
+By mid-2022 I was Head of UX. I built and led a UX team of three, including me. I set up the design process and critique cadence, and worked with PMs and engineers in Agile, from problem framing through IA and interaction design to Figma Dev Mode handoff.
 
 I kept designing hands-on the whole time. Leading the team never replaced doing the work.
 
@@ -134,7 +134,7 @@ The case studies below come from this rebuild.
 - **3 core B2B products from 0→1**, now live for retailers across Europe, Latin America and MENA (including Saudi Arabia and UAE)
 - **40% retention lift on Intouch Live** over my last two years, from a data-informed redesign of core flows
 - **A 44-component design system** used across 3 engineering squads, with less handoff friction and fewer UI bug reports
-- **From sole designer to Head of UX**, building and leading a team of three
+- **From sole designer to Head of UX**, building and leading a UX team of three, including me
 
 The hard part was never a single screen. It was holding one distinction (the same data means different things to the retailer and the advertiser) consistently across the flows, the vocabulary, the scoping rules and the copy. Most of the interesting decisions I made at Intouch were a version of that, and most of the bugs I found were what happens when it slips.
 
