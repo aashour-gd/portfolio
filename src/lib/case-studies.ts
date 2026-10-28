@@ -19,6 +19,8 @@ export type MdCaseStudy = {
   unlisted?: boolean;
   /** Slug to link as "Next", overriding file order. */
   next?: string;
+  /** Slug of the hub project this case study belongs to. */
+  parent?: string;
 };
 
 function readCaseStudyFile(filename: string): MdCaseStudy {
@@ -41,6 +43,7 @@ function readCaseStudyFile(filename: string): MdCaseStudy {
     cover: data.cover ?? undefined,
     unlisted: data.unlisted === true,
     next: data.next ?? undefined,
+    parent: data.parent ?? undefined,
   };
 }
 

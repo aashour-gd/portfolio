@@ -2,9 +2,11 @@
 title: "Flexible Data Tables for Enterprise Retail Media Operations"
 summary: "One table, three teams, three different jobs — designing a table that adapts instead of multiplying."
 tags: ["Product Design", "Enterprise UX", "Design Systems", "Data Tables"]
-product: "Nexa"
+product: "Intouch"
 cover: /images/nexa-tables-cover.png
-next: designguard
+
+parent: intouch-retail-media-platform
+next: campaign-intelligence-and-alerts
 ---
 
 > Part of the [Retail Media Network Portal](https://aashour.com/case-studies/retail-media-network-portal) project.

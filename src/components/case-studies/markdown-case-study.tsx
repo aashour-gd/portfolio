@@ -5,7 +5,7 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Tag from "@/components/ui/tag";
 import ImageLightbox from "./image-lightbox";
-import { getPublicImageSize, type MdCaseStudy } from "@/lib/case-studies";
+import { getCaseStudy, getPublicImageSize, type MdCaseStudy } from "@/lib/case-studies";
 
 // Images break out of the text column to 1100px on desktop; full column width on mobile.
 const imageFrame =
@@ -134,6 +134,7 @@ export default function MarkdownCaseStudy({
   backLabel: string;
 }) {
   // The first image is above the fold: load it eagerly, lazy-load the rest.
+  const parent = cs.parent ? getCaseStudy(cs.parent) : undefined;
   const firstImage = cs.content.match(/!\[[^\]]*\]\(([^)\s]+)/)?.[1];
   const components: Components = {
     ...md,
@@ -164,6 +165,14 @@ export default function MarkdownCaseStudy({
             <span className="text-dim text-xs">—</span>
             <span className="font-body text-xs text-dim">{cs.product}</span>
           </div>
+          {parent && (
+            <Link
+              href={`/work/${parent.slug}`}
+              className="inline-flex items-center gap-1.5 mb-3 font-body text-sm text-accent-light hover:text-accent transition-colors duration-200"
+            >
+              Part of: {parent.title} <ArrowRight size={14} />
+            </Link>
+          )}
           <h1 className="font-display text-4xl lg:text-6xl font-bold text-primary leading-tight mb-6">
             {cs.title}
           </h1>
