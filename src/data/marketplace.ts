@@ -23,6 +23,17 @@ export const marketplaceItems: MarketplaceItem[] = [
     cover: "/images/medu-cover.png",
   },
   {
+    id: "finaity-finance-dashboard",
+    name: "Personal Finance Dashboard UI Kit – Finaity",
+    description: "A clean, free personal-finance dashboard UI kit — balance, cash flow, budgets, goals, and investment views ready to adapt for any fintech product.",
+    category: "UI Kit",
+    price: "Free",
+    gradient: "from-indigo-800/40 to-violet-900/40",
+    featured: true,
+    url: "https://www.figma.com/community/file/1699564495019965862",
+    cover: "/images/finaity-cover.png",
+  },
+  {
     id: "pillow-icons",
     name: "Pillow Icons",
     description: "100 soft, rounded product icons in outline and filled styles, ready to drop into your Figma files.",
@@ -35,4 +46,4 @@ export const marketplaceItems: MarketplaceItem[] = [
   },
 ];
 
-export const marketplaceCategories = ["All", "Design System", "Icon Pack"] as const;
+export const marketplaceCategories = ["All", "UI Kit", "Design System", "Icon Pack"] as const;
