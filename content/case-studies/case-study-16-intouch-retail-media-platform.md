@@ -107,8 +107,23 @@ In 2026 I redesigned and rebuilt Intouch Live and Intouch Ads myself, in one Ang
 
 The constraint I set: **share the primitives, make the differences explicit.**
 
-![Product switcher](/images/nexa-select-product.jpg)
-*The product switcher in the 2026 rebuild.*
+```compare
+{
+  "title": "Creative Library: the same job, redesigned",
+  "before": { "src": "/images/intouch-live-creative-library-before.webp", "label": "Before · Shipped" },
+  "after": { "src": "/images/intouch-live-creative-library-after.webp", "label": "After · 2026" },
+  "start": 50,
+  "notes": [
+    { "side": "before", "id": "A", "x": 17.3, "y": 3.5, "title": "Six top-level dropdowns.", "text": "Every new product area had to squeeze into one horizontal bar." },
+    { "side": "before", "id": "B", "x": 51.3, "y": 48, "title": "Status as faint grey text.", "text": "A failed upload looked almost the same as a finished one." },
+    { "side": "before", "id": "C", "x": 85, "y": 32.5, "title": "No sign of usage.", "text": "The table didn't show whether a creative was actually running anywhere." },
+    { "side": "after", "id": "1", "x": 10, "y": 47, "title": "Grouped side navigation", "text": "that collapses to icons, so the table gets the full width." },
+    { "side": "after", "id": "2", "x": 78.5, "y": 26.3, "title": "One shared table toolbar:", "text": "density, columns and saved views, the same component behind 52 tables." },
+    { "side": "after", "id": "3", "x": 65, "y": 65.1, "title": "Colour only where action is needed.", "text": "Processing is amber, failed is red, done stays quiet." }
+  ],
+  "caption": "All brands and data shown are invented."
+}
+```
 
 What it came to, between June and August 2026:
 

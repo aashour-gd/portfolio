@@ -7,7 +7,7 @@ export default function ImageLightbox({ children }: { children: ReactNode }) {
   const [image, setImage] = useState<{ src: string; alt: string } | null>(null);
 
   const open = (e: React.MouseEvent) => {
-    if (!(e.target instanceof HTMLImageElement)) return;
+    if (!(e.target instanceof HTMLImageElement) || e.target.closest("[data-no-lightbox]")) return;
     setImage({ src: e.target.dataset.full || e.target.currentSrc || e.target.src, alt: e.target.alt });
     dialogRef.current?.showModal();
   };
