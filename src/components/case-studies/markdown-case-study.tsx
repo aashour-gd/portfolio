@@ -5,11 +5,11 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Tag from "@/components/ui/tag";
 import ImageLightbox from "./image-lightbox";
-import { getPublicImageSize, type MdCaseStudy } from "@/lib/case-studies";
+import BeforeAfter, { type CompareSpec } from "./before-after";
+import { getCaseStudy, getPublicImageSize, type MdCaseStudy } from "@/lib/case-studies";
 
-// Images break out of the text column to 1100px on desktop; full column width on mobile.
-const imageFrame =
-  "block my-8 lg:relative lg:left-1/2 lg:-translate-x-1/2 lg:w-[min(1100px,calc(100vw-4rem))]";
+// Images share the text column width (896px body, 848px after padding).
+const imageFrame = "block my-8";
 const imageClass = "w-full h-auto rounded-xl border border-white/[0.06]";
 
 function CaseStudyImage({ src, alt, eager }: { src: string; alt: string; eager: boolean }) {
@@ -28,7 +28,7 @@ function CaseStudyImage({ src, alt, eager }: { src: string; alt: string; eager: 
         alt={alt}
         width={size.width}
         height={size.height}
-        sizes="(min-width: 1024px) min(1100px, calc(100vw - 4rem)), calc(100vw - 3rem)"
+        sizes="(min-width: 896px) 848px, calc(100vw - 3rem)"
         className={imageClass}
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : undefined}
@@ -36,6 +36,32 @@ function CaseStudyImage({ src, alt, eager }: { src: string; alt: string; eager: 
       />
     </span>
   );
+}
+
+// A ```compare fenced block in markdown renders an interactive before/after slider.
+// Its body is JSON matching CompareSpec (see before-after.tsx).
+function CompareBlock({ raw }: { raw: string }) {
+  let spec: CompareSpec;
+  try {
+    spec = JSON.parse(raw);
+  } catch (err) {
+    return (
+      <p className="my-6 rounded-lg border border-red-500/40 bg-red-500/10 p-4 font-mono text-xs text-red-300">
+        Invalid compare block: {(err as Error).message}
+      </p>
+    );
+  }
+  const size = getPublicImageSize(spec.after.src) ?? { width: 1600, height: 1000 };
+  return <BeforeAfter spec={spec} width={size.width} height={size.height} />;
+}
+
+type HastNode = { type: string; tagName?: string; value?: string; properties?: { className?: unknown }; children?: HastNode[] };
+
+function compareSource(node: HastNode | undefined): string | null {
+  const code = node?.children?.[0];
+  const classes = code?.properties?.className;
+  if (code?.tagName !== "code" || !Array.isArray(classes) || !classes.includes("language-compare")) return null;
+  return (code.children ?? []).map((c) => c.value ?? "").join("");
 }
 
 const md: Components = {
@@ -95,11 +121,15 @@ const md: Components = {
       {children}
     </code>
   ),
-  pre: ({ children }) => (
+  pre: ({ node, children }) => {
+    const compare = compareSource(node as unknown as HastNode);
+    if (compare !== null) return <CompareBlock raw={compare} />;
+    return (
     <pre className="my-6 overflow-x-auto rounded-xl border border-white/[0.08] bg-black/30 p-4 font-mono text-sm text-muted [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-muted">
       {children}
     </pre>
-  ),
+    );
+  },
   table: ({ children }) => (
     <div className="my-8 overflow-x-auto rounded-xl border border-white/[0.08]">
       <table className="w-full border-collapse text-left font-body text-sm">{children}</table>
@@ -134,6 +164,7 @@ export default function MarkdownCaseStudy({
   backLabel: string;
 }) {
   // The first image is above the fold: load it eagerly, lazy-load the rest.
+  const parent = cs.parent ? getCaseStudy(cs.parent) : undefined;
   const firstImage = cs.content.match(/!\[[^\]]*\]\(([^)\s]+)/)?.[1];
   const components: Components = {
     ...md,
@@ -164,6 +195,14 @@ export default function MarkdownCaseStudy({
             <span className="text-dim text-xs">—</span>
             <span className="font-body text-xs text-dim">{cs.product}</span>
           </div>
+          {parent && (
+            <Link
+              href={`/work/${parent.slug}`}
+              className="inline-flex items-center gap-1.5 mb-3 font-body text-sm text-accent-light hover:text-accent transition-colors duration-200"
+            >
+              Part of: {parent.title} <ArrowRight size={14} />
+            </Link>
+          )}
           <h1 className="font-display text-4xl lg:text-6xl font-bold text-primary leading-tight mb-6">
             {cs.title}
           </h1>
@@ -179,7 +218,7 @@ export default function MarkdownCaseStudy({
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-6 py-16 lg:py-24">
+      <div className="max-w-4xl mx-auto px-6 py-16 lg:py-24">
         <ImageLightbox>
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{cs.content}</ReactMarkdown>
         </ImageLightbox>

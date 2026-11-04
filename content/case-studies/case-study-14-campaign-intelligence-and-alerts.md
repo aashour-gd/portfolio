@@ -1,5 +1,5 @@
 ---
-product: "Nexa"
+product: "Intouch"
 title: "Campaign intelligence: turning a PRD into a scoring model"
 slug: campaign-intelligence-and-alerts
 summary: A spec asked for campaign alerts. Two of the four requested alert families were impossible
@@ -8,11 +8,11 @@ summary: A spec asked for campaign alerts. Two of the four requested alert famil
 project: Retail Media Network Portal
 tags: [product design, data modelling, adtech, product thinking]
 cover: /images/nexa-ads-intelligence-dashboard.jpg
+parent: intouch-retail-media-platform
+next: specs-as-a-conversation
 ---
 
 # Campaign intelligence: turning a PRD into a scoring model
-
-> Part of the [Retail Media Network Portal](/case-studies/retail-media-network-portal) project.
 
 ## What was asked for
 

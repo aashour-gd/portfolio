@@ -14,16 +14,16 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "retail-media-network-portal",
-    title: "Retail Media Network Portal",
+    slug: "intouch-retail-media-platform",
+    title: "Intouch: Retail Media Platform",
     category: "UI/UX Design",
-    year: "2026",
-    description: "A two-sided retail media platform — the retailer's operations console and the advertiser's self-serve portal — designed and built end-to-end in one Angular codebase.",
-    tags: ["Product Design", "Design Systems", "Front-end Architecture", "AdTech"],
+    year: "2020–2026",
+    description: "Six years designing Intouch Live for retailers and Intouch Ads for advertisers: a retail media network live on three continents. From sole designer to Head of UX.",
+    tags: ["Product Design", "Design Systems", "UX Leadership", "Retail Media"],
     featured: true,
     gradient: "from-slate-800/60 via-indigo-900/30 to-transparent",
     cover: "/images/nexa-cover.png",
-    href: "/work/retail-media-network-portal",
+    href: "/work/intouch-retail-media-platform",
   },
   {
     slug: "retail-os",

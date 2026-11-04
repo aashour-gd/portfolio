@@ -1,5 +1,5 @@
 ---
-product: "Nexa"
+product: "Intouch"
 title: "A design system for two products, not one"
 slug: design-system-two-products
 summary: 44 shared components, 75 theme tokens per mode, and per-product branding derived from a
@@ -8,11 +8,11 @@ summary: 44 shared components, 75 theme tokens per mode, and per-product brandin
 project: Retail Media Network Portal
 tags: [design systems, design tokens, Angular, theming]
 cover: /images/nexa-live-creative-library.jpg
+parent: intouch-retail-media-platform
+next: flexible-data-tables
 ---
 
 # A design system for two products, not one
-
-> Part of the [Retail Media Network Portal](/case-studies/retail-media-network-portal) project.
 
 ## The requirement
 

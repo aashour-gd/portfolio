@@ -1,5 +1,5 @@
 ---
-product: "Nexa"
+product: "Intouch"
 title: "Specs as a conversation, not a document"
 slug: specs-as-a-conversation
 summary: How I got business rules out of a domain expert's head using annotated living documents —
@@ -7,11 +7,11 @@ summary: How I got business rules out of a domain expert's head using annotated 
 project: Retail Media Network Portal
 tags: [product management, requirements, process, documentation]
 cover: /images/nexa-live-create-campaign.jpg
+parent: intouch-retail-media-platform
+next: intouch-retail-media-platform
 ---
 
 # Specs as a conversation, not a document
-
-> Part of the [Retail Media Network Portal](/case-studies/retail-media-network-portal) project.
 
 ## The problem with building in someone else's domain
 

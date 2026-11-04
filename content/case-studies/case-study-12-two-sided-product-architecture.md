@@ -1,5 +1,5 @@
 ---
-product: "Nexa"
+product: "Intouch"
 title: "Two-sided product architecture: one codebase, two audiences"
 slug: two-sided-product-architecture
 summary: How a retail media portal serves the retailer and the advertiser from one Angular codebase
@@ -8,11 +8,11 @@ summary: How a retail media portal serves the retailer and the advertiser from o
 project: Retail Media Network Portal
 tags: [front-end architecture, product design, multi-tenant SaaS]
 cover: /images/nexa-select-product.jpg
+parent: intouch-retail-media-platform
+next: design-system-two-products
 ---
 
 # Two-sided product architecture
-
-> Part of the [Retail Media Network Portal](/case-studies/retail-media-network-portal) project.
 
 ## The situation
 
@@ -75,8 +75,8 @@ The most consequential piece of architecture is also one of the smallest — a s
 ```ts
 readonly current = computed<ProductId>(() => {
   const url = this.url() ?? '';
-  if (url.startsWith('/nexa-ads'))   return 'ads';
-  if (url.startsWith('/nexa-spark')) return 'spark';
+  if (url.startsWith('/intouch-ads'))   return 'ads';
+  if (url.startsWith('/intouch-spark')) return 'spark';
   if (url.startsWith('/platform'))   return 'platform';
   return 'live';
 });
