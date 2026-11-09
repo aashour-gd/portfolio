@@ -5,7 +5,10 @@ import MarkdownCaseStudy from "@/components/case-studies/markdown-case-study";
 import { getAllCaseStudies, getCaseStudy } from "@/lib/case-studies";
 
 export function generateStaticParams() {
-  return getAllCaseStudies().map((c) => ({ slug: c.slug }));
+  // "decritiq" has its own bespoke project page at /work/decritiq (static route wins).
+  return getAllCaseStudies()
+    .filter((c) => c.slug !== "decritiq")
+    .map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {

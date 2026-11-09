@@ -23,6 +23,8 @@ export type CompareSpec = {
   /** Divider start position in % (default 50). */
   start?: number;
   caption?: string;
+  /** Text for the two toggle buttons (default "Before" / "After"). */
+  toggleLabels?: { before: string; after: string };
 };
 
 const clamp = (v: number) => Math.min(100, Math.max(0, v));
@@ -193,10 +195,10 @@ export default function BeforeAfter({ spec, width, height }: { spec: CompareSpec
       <div className="mt-3 flex items-center justify-between gap-4">
         <div className="inline-flex rounded-lg border border-white/[0.08] p-1 font-body text-xs">
           <button type="button" onClick={() => reveal("before")} className={`rounded-md px-3 py-1.5 transition-colors cursor-pointer ${pos > 50 ? "bg-white/[0.08] text-primary" : "text-muted hover:text-primary"}`}>
-            Before
+            {spec.toggleLabels?.before ?? "Before"}
           </button>
           <button type="button" onClick={() => reveal("after")} className={`rounded-md px-3 py-1.5 transition-colors cursor-pointer ${pos <= 50 ? "bg-accent text-white" : "text-muted hover:text-primary"}`}>
-            After
+            {spec.toggleLabels?.after ?? "After"}
           </button>
         </div>
         <span className="hidden sm:block font-body text-xs text-dim">Drag the handle to compare</span>
