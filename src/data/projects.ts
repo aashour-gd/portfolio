@@ -38,6 +38,18 @@ export const projects: Project[] = [
     href: "/case-studies/retail-os",
   },
   {
+    slug: "decritiq",
+    title: "Decritiq: Design Critique Tool",
+    category: "UI/UX Design",
+    year: "2026",
+    description: "A design critique tool where every finding is pinned, measured and tied to a rule. I tested it on injected defects and audited the product with my own design-system method.",
+    tags: ["Product Design", "Design Systems", "AI Tooling"],
+    featured: true,
+    gradient: "from-indigo-900/50 via-violet-900/30 to-transparent",
+    cover: "/images/decritiq-desktop-report-light.png",
+    href: "/case-studies/decritiq",
+  },
+  {
     slug: "designguard",
     title: "DesignGuard — AI-Powered Design QA",
     category: "UI/UX Design",

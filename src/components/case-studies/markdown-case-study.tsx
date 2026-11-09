@@ -99,12 +99,15 @@ const md: Components = {
   ),
   em: ({ children }) => <em className="italic text-primary/80">{children}</em>,
   a: ({ href, children }) => {
+    // Internal routes open in place; external links and static files (.html/.pdf) open in a new tab.
     const isInternal = typeof href === "string" && href.startsWith("/");
+    const isStaticFile = typeof href === "string" && /\.(html|pdf)$/i.test(href);
+    const newTab = !isInternal || isStaticFile;
     return (
       <a
         href={href}
         className="text-accent-light underline underline-offset-2 hover:text-accent transition-colors"
-        {...(isInternal ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+        {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
         {children}
       </a>
