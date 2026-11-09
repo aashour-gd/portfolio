@@ -57,6 +57,13 @@ function CompareBlock({ raw }: { raw: string }) {
 
 type HastNode = { type: string; tagName?: string; value?: string; properties?: { className?: unknown }; children?: HastNode[] };
 
+// Plain text of a hast node and its descendants — used to spot an empty table header.
+function nodeText(node: HastNode | undefined): string {
+  if (!node) return "";
+  if (node.value) return node.value;
+  return (node.children ?? []).map(nodeText).join("");
+}
+
 function compareSource(node: HastNode | undefined): string | null {
   const code = node?.children?.[0];
   const classes = code?.properties?.className;
@@ -138,7 +145,10 @@ const md: Components = {
       <table className="w-full border-collapse text-left font-body text-sm">{children}</table>
     </div>
   ),
-  thead: ({ children }) => <thead className="bg-white/[0.03]">{children}</thead>,
+  thead: ({ node, children }) =>
+    nodeText(node as unknown as HastNode).trim() === "" ? null : (
+      <thead className="bg-white/[0.03]">{children}</thead>
+    ),
   th: ({ children }) => (
     <th className="border-b border-white/[0.1] px-4 py-3 align-top font-semibold text-primary">
       {children}

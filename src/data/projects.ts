@@ -46,8 +46,8 @@ export const projects: Project[] = [
     tags: ["Product Design", "Design Systems", "AI Tooling"],
     featured: true,
     gradient: "from-indigo-900/50 via-violet-900/30 to-transparent",
-    cover: "/images/decritiq-desktop-report-light.png",
-    href: "/case-studies/decritiq",
+    cover: "/images/decritiq-cover-v2.png",
+    href: "/work/decritiq",
   },
   {
     slug: "designguard",

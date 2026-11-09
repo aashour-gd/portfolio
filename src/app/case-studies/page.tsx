@@ -54,7 +54,6 @@ export default function CaseStudiesPage() {
                     loading="lazy"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card/50 hidden lg:block" />
                 <div className="absolute top-6 left-6">
                   <Tag variant="accent">Featured</Tag>
                 </div>
@@ -102,17 +101,14 @@ export default function CaseStudiesPage() {
                       loading="lazy"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <span className="font-body text-xs font-semibold text-accent/80 uppercase tracking-widest">
-                      {cs.index}
-                    </span>
-                  </div>
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <ArrowUpRight size={16} className="text-primary" />
                   </div>
                 </div>
                 <div className="p-6 flex flex-col flex-1">
+                  <span className="block font-body text-xs font-semibold text-accent/80 uppercase tracking-widest mb-2">
+                    {cs.index}
+                  </span>
                   <h3 className="font-display font-semibold text-primary text-lg mb-2 group-hover:text-accent-light transition-colors duration-200">
                     {cs.title}
                   </h3>

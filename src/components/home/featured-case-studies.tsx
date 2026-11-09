@@ -77,7 +77,7 @@ const CASE_STUDIES: CaseStudy[] = [
     tags: ["AI Tooling", "Design Systems", "Product Design"],
     accent: "#8B5CF6",
     panelBg: "#141229",
-    imageSrc: "/images/decritiq-desktop-report-light.png",
+    imageSrc: "/images/decritiq-cover-v2.png",
     href: "/case-studies/decritiq",
     stats: [
       { value: "62", label: "Rules" },

@@ -48,7 +48,6 @@ function CardInner({ project, showCategory = true }: { project: Project; showCat
         ) : (
           <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-card/70 to-transparent" />
         <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/[0.06] border border-white/[0.1] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <ArrowUpRight size={14} className="text-primary" />
         </div>

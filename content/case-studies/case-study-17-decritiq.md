@@ -5,7 +5,7 @@ year: 2026
 product: Decritiq
 summary: "A design critique tool where every finding is pinned, measured and tied to a rule. I tested it on injected defects and audited the product with my own design-system method."
 tags: [Product Design, Design Systems, AI Tooling]
-cover: /images/decritiq-desktop-report-light.png
+cover: /images/decritiq-cover-v2.png
 ---
 
 | | |
@@ -17,9 +17,17 @@ cover: /images/decritiq-desktop-report-light.png
 | **Scale** | 62 rules, 4 app pages, light and dark, 390 and 1440 px |
 | **Status** | Private local build. Walkthrough on request. |
 
-![Decritiq's report view: numbered pins over a Finaity dashboard design, with the measured values listed beside each finding](/images/decritiq-desktop-report-light.png)
+```compare
+{
+  "before": { "src": "/images/decritiq-desktop-report-dark.png", "label": "Dark", "alt": "Decritiq's report view in dark mode: numbered pins over a Finaity dashboard design, with the measured values listed beside each finding" },
+  "after": { "src": "/images/decritiq-desktop-report-light.png", "label": "Light", "alt": "Decritiq's report view in light mode: numbered pins over a Finaity dashboard design, with the measured values listed beside each finding" },
+  "start": 50,
+  "toggleLabels": { "before": "Dark", "after": "Light" },
+  "caption": "Light and dark share the same tokens. A stored result from a real run on my own Finaity design. Code measured the contrast; the model judged the rest."
+}
+```
 
-*A stored result from a real run on my own Finaity design. Code measured the contrast; the model judged the rest.*
+[See the whole project](/work/decritiq) — the logo, the motion and the design system.
 
 ## Problem
 

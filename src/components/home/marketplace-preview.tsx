@@ -57,8 +57,11 @@ export default function MarketplacePreview() {
                     loading="lazy"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
-                <div className="absolute bottom-4 left-4">
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col flex-1 p-6">
+                <div className="flex items-center gap-2">
                   <span className={`inline-flex px-2.5 py-1 rounded-full text-[11px] font-medium font-body uppercase tracking-wider ${
                     item.price === "Free"
                       ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/20"
@@ -66,22 +69,15 @@ export default function MarketplacePreview() {
                   }`}>
                     {item.price}
                   </span>
+                  <Tag variant="dim">{item.category}</Tag>
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-col flex-1 p-6">
-                <Tag variant="dim">{item.category}</Tag>
                 <h3 className="font-display font-semibold text-primary text-base mt-3 mb-2">
                   {item.name}
                 </h3>
                 <p className="font-body text-xs text-muted leading-[1.7] flex-1 mb-4">
                   {item.description}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-body text-xs text-dim">
-                    {item.price}
-                  </span>
+                <div className="flex items-center justify-end">
                   {item.url ? (
                     <a
                       href={item.url}
