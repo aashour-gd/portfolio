@@ -10,6 +10,8 @@ const CASE_STUDIES_DIR = path.join(process.cwd(), "content/case-studies");
 export type MdCaseStudy = {
   slug: string;
   index: string;
+  /** Sort position in the listing. Defaults to the filename number; an `order` frontmatter value overrides it. */
+  sortOrder: number;
   title: string;
   summary: string;
   tags: string[];
@@ -17,6 +19,8 @@ export type MdCaseStudy = {
   content: string;
   cover?: string;
   unlisted?: boolean;
+  /** Draft: kept out of the listing, reachable by direct URL, and marked noindex. */
+  draft?: boolean;
   /** Slug to link as "Next", overriding file order. */
   next?: string;
   /** Slug of the hub project this case study belongs to. */
@@ -26,7 +30,7 @@ export type MdCaseStudy = {
 function readCaseStudyFile(filename: string): MdCaseStudy {
   const match = filename.match(/^case-study-(\d+)-(.+)\.md$/);
   if (!match) throw new Error(`Unexpected case study filename: ${filename}`);
-  const [, order, slug] = match;
+  const [, fileNumber, slug] = match;
 
   const raw = fs.readFileSync(path.join(CASE_STUDIES_DIR, filename), "utf8");
   const { data, content } = matter(raw);
@@ -34,7 +38,8 @@ function readCaseStudyFile(filename: string): MdCaseStudy {
 
   return {
     slug,
-    index: order.padStart(2, "0"),
+    index: fileNumber.padStart(2, "0"),
+    sortOrder: typeof data.order === "number" ? data.order : Number(fileNumber),
     title: data.title,
     summary: data.summary,
     tags: data.tags ?? [],
@@ -42,6 +47,7 @@ function readCaseStudyFile(filename: string): MdCaseStudy {
     content: body,
     cover: data.cover ?? undefined,
     unlisted: data.unlisted === true,
+    draft: data.draft === true,
     next: data.next ?? undefined,
     parent: data.parent ?? undefined,
   };
@@ -52,7 +58,7 @@ export function getAllCaseStudies(): MdCaseStudy[] {
     .readdirSync(CASE_STUDIES_DIR)
     .filter((f) => f.endsWith(".md"))
     .map(readCaseStudyFile)
-    .sort((a, b) => a.index.localeCompare(b.index));
+    .sort((a, b) => a.sortOrder - b.sortOrder || a.index.localeCompare(b.index));
 }
 
 /** Intrinsic size of an image in /public, or null if it isn't a readable local file. */

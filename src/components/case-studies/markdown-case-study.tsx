@@ -6,6 +6,11 @@ import remarkGfm from "remark-gfm";
 import Tag from "@/components/ui/tag";
 import ImageLightbox from "./image-lightbox";
 import BeforeAfter, { type CompareSpec } from "./before-after";
+import Reveal from "./interactive/reveal";
+import SafeToSpend, { type SafeToSpendSpec } from "./interactive/safe-to-spend";
+import DecisionExplorer, { type DecisionSpec } from "./interactive/decision-explorer";
+import ScrollStage, { type StageSpec } from "./interactive/scroll-stage";
+import NumberStory, { type StorySpec } from "./interactive/number-story";
 import { getCaseStudy, getPublicImageSize, type MdCaseStudy } from "@/lib/case-studies";
 
 // Images share the text column width (896px body, 848px after padding).
@@ -64,12 +69,40 @@ function nodeText(node: HastNode | undefined): string {
   return (node.children ?? []).map(nodeText).join("");
 }
 
-function compareSource(node: HastNode | undefined): string | null {
+// Language of a fenced block ("compare", "decision", ...) and its raw text.
+function fenceSource(node: HastNode | undefined): { lang: string; raw: string } | null {
   const code = node?.children?.[0];
   const classes = code?.properties?.className;
-  if (code?.tagName !== "code" || !Array.isArray(classes) || !classes.includes("language-compare")) return null;
-  return (code.children ?? []).map((c) => c.value ?? "").join("");
+  if (code?.tagName !== "code" || !Array.isArray(classes)) return null;
+  const cls = classes.find((c) => typeof c === "string" && c.startsWith("language-"));
+  if (typeof cls !== "string") return null;
+  return { lang: cls.slice("language-".length), raw: (code.children ?? []).map((c) => c.value ?? "").join("") };
 }
+
+// ```decision, ```stage and ```safe-to-spend blocks render interactive components.
+// Each body is JSON matching the spec type exported by its component (see ./interactive).
+function InteractiveBlock({ lang, raw }: { lang: string; raw: string }) {
+  let spec: unknown;
+  try {
+    spec = JSON.parse(raw);
+  } catch (err) {
+    return (
+      <p className="my-6 rounded-lg border border-red-500/40 bg-red-500/10 p-4 font-mono text-xs text-red-300">
+        Invalid {lang} block: {(err as Error).message}
+      </p>
+    );
+  }
+  return (
+    <Reveal>
+      {lang === "decision" && <DecisionExplorer spec={spec as DecisionSpec} />}
+      {lang === "stage" && <ScrollStage spec={spec as StageSpec} />}
+      {lang === "safe-to-spend" && <SafeToSpend spec={spec as SafeToSpendSpec} />}
+      {lang === "story" && <NumberStory spec={spec as StorySpec} />}
+    </Reveal>
+  );
+}
+
+const INTERACTIVE = new Set(["decision", "stage", "safe-to-spend", "story"]);
 
 const md: Components = {
   h2: ({ children }) => (
@@ -132,8 +165,9 @@ const md: Components = {
     </code>
   ),
   pre: ({ node, children }) => {
-    const compare = compareSource(node as unknown as HastNode);
-    if (compare !== null) return <CompareBlock raw={compare} />;
+    const fence = fenceSource(node as unknown as HastNode);
+    if (fence?.lang === "compare") return <CompareBlock raw={fence.raw} />;
+    if (fence && INTERACTIVE.has(fence.lang)) return <InteractiveBlock lang={fence.lang} raw={fence.raw} />;
     return (
     <pre className="my-6 overflow-x-auto rounded-xl border border-white/[0.08] bg-black/30 p-4 font-mono text-sm text-muted [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-muted">
       {children}
@@ -182,7 +216,10 @@ export default function MarkdownCaseStudy({
   const components: Components = {
     ...md,
     img: ({ src, alt }) =>
-      typeof src === "string" ? (
+      typeof src === "string" && src.startsWith("/images/logos/") ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={src} alt={alt ?? ""} className="h-8 w-auto" />
+      ) : typeof src === "string" ? (
         <CaseStudyImage src={src} alt={alt ?? ""} eager={src === firstImage} />
       ) : null,
   };

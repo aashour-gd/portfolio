@@ -48,7 +48,7 @@ export default function MarketplacePreview() {
               className="group flex flex-col rounded-2xl border border-white/[0.07] bg-card overflow-hidden hover:border-accent/25 transition-[transform,border-color] duration-200 hover:-translate-y-1 cursor-pointer"
             >
               {/* Cover */}
-              <div className={`h-40 relative overflow-hidden ${item.cover ? "bg-surface" : `bg-gradient-to-br ${item.gradient}`}`}>
+              <div className={`aspect-video relative overflow-hidden ${item.cover ? "bg-surface" : `bg-gradient-to-br ${item.gradient}`}`}>
                 {item.cover && (
                   <img
                     src={item.cover}

@@ -1,0 +1,691 @@
+diff --git a/content/case-studies/case-study-18-finaity.md b/content/case-studies/case-study-18-finaity.md
+new file mode 100644
+index 0000000..81b4b31
+--- /dev/null
++++ b/content/case-studies/case-study-18-finaity.md
+@@ -0,0 +1,153 @@
++---
++title: "Finaity: a money app where every number can be checked"
++slug: finaity
++year: 2026
++product: Finaity
++summary: "A multi-currency personal-finance product. One number answers what can I spend today, and every line behind it can be checked."
++tags: [Fintech, Personal Finance, Multi-currency, Design Systems]
++unlisted: true
++---
++
++| | |
++|---|---|
++| **Role** | Solo: product, design, design system, front end |
++| **Timeline** | [10 days] |
++| **Domain** | Personal finance, multi-currency |
++| **Status** | Self-initiated prototype, on-device |
++
++Try the number below. It opens up.
++
++```safe-to-spend
++{
++  "label": "Safe to spend today",
++  "whole": "14,700",
++  "decimals": ".00",
++  "lines": [
++    { "label": "Money you can spend", "value": "26,000.00" },
++    { "label": "Bills due before next income", "value": "− 2,500.00" },
++    { "label": "Owed on cards", "value": "− 8,800.00" }
++  ],
++  "total": { "label": "Safe to spend", "value": "14,700.00" },
++  "note": "Sample data. The same component as the prototype, not a screenshot."
++}
++```
++
++## Problem
++
++My money is in too many places. Several banks, a wallet or two, cash, a credit card, and more than one currency. Every finance app I tried assumed one currency and one bank, or showed me a balance that ignored the rent due on Thursday. The question I actually ask each morning is simple: what can I safely spend today?
++
++A balance cannot answer that. A balance is what you have. Safe to spend is what you have, minus what is already spoken for. And if the app cannot show how it got that number, I will not trust it, so I will keep doing the sum in my head.
++
++## Role
++
++I did this on my own, as a side project: the product thinking, the interface, the design system and the front-end build. No client, no team, and no users yet.
++
++## Hard Decision
++
++**A number you cannot check is a number you will not trust.**
++
++I made safe-to-spend the hero figure and made it open up. Tap it and every line behind it appears. Then I had to decide what a plan is. Pick an option below to see what each choice would have shown.
++
++```decision
++{
++  "question": "Should a savings plan come off the main figure?",
++  "intro": "Sample data: 14,700.00 to spend today, and a laptop plan that would ask for 18,000.",
++  "options": [
++    {
++      "id": "a",
++      "label": "Plans come off the figure too",
++      "summary": "One number that includes everything I intend to do.",
++      "figure": "−3,300.00",
++      "figureNote": "A shortfall, while there is plenty of money in hand",
++      "tone": "warn",
++      "body": "It looked precise and it was unhelpful. It answered \"can I keep every plan on track?\" when I had asked \"can I spend today?\". This was my first version."
++    },
++    {
++      "id": "b",
++      "label": "Split bills from plans",
++      "summary": "A bill is not a choice. A plan is. Show them on separate lines.",
++      "figure": "14,700.00",
++      "figureNote": "Plans would ask for 18,000. Keeping all of them leaves 3,300 short.",
++      "tone": "ok",
++      "body": "The first number now answers the question that was asked. What the plans would ask for sits beside it, with a warning when keeping every plan would leave me short."
++    }
++  ],
++  "chosen": "b",
++  "record": "Safe to spend takes off bills and card balances only. Plans are a separate line.",
++  "cost": "The main figure can look more generous than my plans allow, and a reader has to look one line further to see that. I accepted it because the first number now answers the question that was asked."
++}
++```
++
++The same rule shaped exchange rates. I never replace a rate you typed without your approval. I do not scrape a search page for rates. Each rate carries its source and date, and a missing rate marks the total as incomplete instead of guessing. The cost is some manual upkeep. In a money app, a quiet wrong number costs more than a visible gap.
++
++## What I Built
++
++```stage
++{
++  "caption": "Sample data. Scroll, or click a step.",
++  "steps": [
++    {
++      "title": "An exact money model",
++      "blurb": "Amounts are whole units of the smallest coin, so nothing drifts through rounding. Every transaction keeps its own currency.",
++      "stage": {
++        "kind": "table",
++        "head": ["Stored", "Shown"],
++        "rows": [["1250", "12.50"], ["1470000", "14,700.00"]],
++        "chips": [
++          { "text": "Rate typed by you · source and date shown" },
++          { "text": "Missing rate: total marked incomplete", "tone": "warn" }
++        ]
++      }
++    },
++    {
++      "title": "Safe to spend, with a runway",
++      "blurb": "The hero figure sits above a track from the last income to the next. Each bill is a dot you can tap.",
++      "stage": {
++        "kind": "runway",
++        "todayAt": 34,
++        "bills": [
++          { "name": "Rent", "due": "Due in 6 days", "amount": "1,800.00", "at": 48 },
++          { "name": "Phone", "due": "Due in 12 days", "amount": "250.00", "at": 66 },
++          { "name": "Internet", "due": "Due in 19 days", "amount": "450.00", "at": 84 }
++        ]
++      }
++    },
++    {
++      "title": "A design system built with my own method",
++      "blurb": "Three token layers, a 4px grid, one icon weight, light and dark as modes, and right-to-left by default.",
++      "stage": {
++        "kind": "table",
++        "head": ["Layer", "Example"],
++        "rows": [["Raw", "teal-700"], ["Meaning", "color.accent"], ["Component", "button.primary.bg"]]
++      }
++    },
++    {
++      "title": "A KPI card I redesigned twice",
++      "blurb": "I built the detailed spec, found it bulky, and moved the explanation into an info popover.",
++      "stage": {
++        "kind": "text",
++        "lines": [
++          "Spec version: icon, title, figure and a paragraph of explanation.",
++          "Compact version: icon and title on one row, explanation in an info popover. Cut the card height by about a third [refresh figure at publish]."
++        ]
++      }
++    }
++  ]
++}
++```
++
++Process: Frame, Model, Decide, Build, Prove, Ship. Every decision is a written record with its cost, and nothing is marked done without evidence in a proof log.
++
++## Result
++
++This is a prototype, built over about [10 days], with no users yet. What I can show is what I measured.
++
++- **Audit.** I ran my design-system audit against 13 rules four times. The first run found 6 Blocker, 6 Major and 6 Minor issues. The latest run found 0 Blocker, 3 Major and 4 Minor [refresh at publish].
++- **Correctness.** I worked out the figures by hand and checked the app against them. With sample data, safe to spend came out as 26,000 minus 2,500 minus 8,800, which is 14,700.00.
++- **Tests.** [182] unit tests and [20+] browser suites pass, including a rule that payments every 28 days fall exactly 13 times in any 364 days.
++- **Access.** [0 of 241] controls were under 44px on a phone, and the checked pages passed an automated accessibility scan in light and dark.
++- **What is not proven.** A real phone, browsers other than Chromium, a screen reader, Arabic, the live rate feed, real bank statements, and real users. I list these on purpose.
++
++## Learning
++
++I chose the spacing of the big numbers by theory: tighter looks more refined. Then I looked at specimens, and at 48px two neighbouring digits merged into one shape. The evidence changed my decision, so I now test type on the real digits before I set it. In a money app the digits are the content, and a number that reads wrongly is a bug.
+diff --git a/src/components/case-studies/interactive/decision-explorer.tsx b/src/components/case-studies/interactive/decision-explorer.tsx
+new file mode 100644
+index 0000000..dec70db
+--- /dev/null
++++ b/src/components/case-studies/interactive/decision-explorer.tsx
+@@ -0,0 +1,136 @@
++"use client";
++
++import { useState } from "react";
++import { motion, AnimatePresence, useReducedMotion } from "motion/react";
++
++// Spec for a ```decision block. The reader picks an option first and sees what it
++// would have meant. Picking the option I shipped also reveals the decision record
++// and its cost. `chosen` is the id of the option I shipped.
++export type DecisionSpec = {
++  question: string;
++  intro?: string;
++  options: {
++    id: string;
++    label: string;
++    summary: string;
++    figure: string;
++    figureNote?: string;
++    tone: "warn" | "ok";
++    body: string;
++  }[];
++  chosen: string;
++  record: string;
++  cost: string;
++};
++
++export default function DecisionExplorer({ spec }: { spec: DecisionSpec }) {
++  const [picked, setPicked] = useState<string | null>(null);
++  const reduce = useReducedMotion();
++  const current = spec.options.find((o) => o.id === picked);
++  const shipped = picked === spec.chosen;
++
++  return (
++    <section
++      aria-label="Decision explorer"
++      className="my-10 rounded-2xl border border-white/[0.08] bg-card p-6 lg:p-8"
++    >
++      <p className="mb-2 font-body text-xs font-semibold uppercase tracking-[0.2em] text-accent-light">
++        You choose first
++      </p>
++      <h3 className="!mt-0 mb-2 font-display text-xl font-semibold text-primary">{spec.question}</h3>
++      {spec.intro && <p className="mb-5 font-body text-sm leading-relaxed text-muted">{spec.intro}</p>}
++
++      <div role="group" aria-label="Options" className="grid gap-3 sm:grid-cols-2">
++        {spec.options.map((o, i) => {
++          const on = picked === o.id;
++          return (
++            <button
++              key={o.id}
++              type="button"
++              aria-pressed={on}
++              onClick={() => setPicked(o.id)}
++              className={`flex min-h-11 flex-col gap-1.5 rounded-xl border p-4 text-left transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-light ${
++                on ? "border-accent-light bg-accent/10" : "border-white/[0.08] bg-bg hover:border-white/[0.2]"
++              }`}
++            >
++              <span className="font-body text-[11px] uppercase tracking-wider text-dim">
++                Option {String.fromCharCode(65 + i)}
++              </span>
++              <span className="font-display text-base font-semibold text-primary">{o.label}</span>
++              <span className="font-body text-sm leading-relaxed text-muted">{o.summary}</span>
++            </button>
++          );
++        })}
++      </div>
++
++      <div aria-live="polite" className="mt-5">
++        <AnimatePresence mode="wait" initial={false}>
++          {!current && (
++            <motion.p
++              key="empty"
++              initial={reduce ? false : { opacity: 0 }}
++              animate={{ opacity: 1 }}
++              exit={{ opacity: 0 }}
++              className="rounded-xl border border-dashed border-white/[0.1] p-5 font-body text-sm text-muted"
++            >
++              Pick an option to see what the reader would see.
++            </motion.p>
++          )}
++          {current && (
++            <motion.div
++              key={current.id}
++              initial={reduce ? false : { opacity: 0, y: 8 }}
++              animate={{ opacity: 1, y: 0 }}
++              exit={{ opacity: 0 }}
++              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
++              className={`rounded-xl border p-5 ${shipped ? "border-accent-light/60" : "border-white/[0.08]"} bg-bg`}
++            >
++              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
++                <div className="sm:w-56 sm:shrink-0">
++                  <div
++                    className={`font-display text-4xl font-semibold tracking-tight [font-variant-numeric:tabular-nums] ${
++                      current.tone === "warn" ? "text-red-400" : "text-primary"
++                    }`}
++                  >
++                    {current.figure}
++                  </div>
++                  {current.figureNote && (
++                    <p className={`mt-1 font-body text-xs ${current.tone === "warn" ? "text-red-300" : "text-muted"}`}>
++                      {current.figureNote}
++                    </p>
++                  )}
++                </div>
++                <p className="font-body text-sm leading-relaxed text-muted">{current.body}</p>
++              </div>
++
++              {shipped ? (
++                <div className="mt-5 grid gap-3 sm:grid-cols-2">
++                  <div className="rounded-lg border border-white/[0.08] border-l-4 border-l-accent-light bg-card p-4">
++                    <p className="font-body text-[11px] font-semibold uppercase tracking-wider text-accent-light">
++                      Decision record · what I chose
++                    </p>
++                    <p className="mt-1.5 font-body text-sm leading-relaxed text-muted">{spec.record}</p>
++                  </div>
++                  <div className="rounded-lg border border-white/[0.08] border-l-4 border-l-red-400 bg-card p-4">
++                    <p className="font-body text-[11px] font-semibold uppercase tracking-wider text-red-300">
++                      The cost is real
++                    </p>
++                    <p className="mt-1.5 font-body text-sm leading-relaxed text-muted">{spec.cost}</p>
++                  </div>
++                </div>
++              ) : (
++                <button
++                  type="button"
++                  onClick={() => setPicked(spec.chosen)}
++                  className="mt-5 min-h-11 rounded-full border border-accent-light/60 px-4 font-body text-sm font-medium text-accent-light transition-colors duration-200 hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-light"
++                >
++                  See what I shipped
++                </button>
++              )}
++            </motion.div>
++          )}
++        </AnimatePresence>
++      </div>
++    </section>
++  );
++}
+diff --git a/src/components/case-studies/interactive/reveal.tsx b/src/components/case-studies/interactive/reveal.tsx
+new file mode 100644
+index 0000000..6298938
+--- /dev/null
++++ b/src/components/case-studies/interactive/reveal.tsx
+@@ -0,0 +1,29 @@
++"use client";
++
++import { motion, useReducedMotion } from "motion/react";
++
++// Fades and lifts its children in once, when they scroll into view.
++// With reduced motion on, it renders a plain div so nothing animates.
++export default function Reveal({
++  children,
++  delay = 0,
++  className,
++}: {
++  children: React.ReactNode;
++  delay?: number;
++  className?: string;
++}) {
++  const reduce = useReducedMotion();
++  if (reduce) return <div className={className}>{children}</div>;
++  return (
++    <motion.div
++      className={className}
++      initial={{ opacity: 0, y: 16 }}
++      whileInView={{ opacity: 1, y: 0 }}
++      viewport={{ once: true, margin: "-80px" }}
++      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
++    >
++      {children}
++    </motion.div>
++  );
++}
+diff --git a/src/components/case-studies/interactive/safe-to-spend.tsx b/src/components/case-studies/interactive/safe-to-spend.tsx
+new file mode 100644
+index 0000000..d6e7295
+--- /dev/null
++++ b/src/components/case-studies/interactive/safe-to-spend.tsx
+@@ -0,0 +1,75 @@
++"use client";
++
++import { useId, useState } from "react";
++import { motion, AnimatePresence, useReducedMotion } from "motion/react";
++import { Minus, Plus } from "lucide-react";
++
++// Spec for a ```safe-to-spend block. A live component, not a screenshot:
++// the reader opens the number to see every line behind it.
++export type SafeToSpendSpec = {
++  label: string;
++  whole: string;
++  decimals: string;
++  lines: { label: string; value: string }[];
++  total: { label: string; value: string };
++  note?: string;
++};
++
++export default function SafeToSpend({ spec }: { spec: SafeToSpendSpec }) {
++  const [open, setOpen] = useState(true);
++  const reduce = useReducedMotion();
++  const panelId = useId();
++
++  return (
++    <div className="my-10 mx-auto w-full max-w-md rounded-[28px] border border-white/[0.08] bg-card p-7">
++      <div className="mb-5 flex items-center justify-between gap-3">
++        <span className="font-body text-sm text-muted">{spec.label}</span>
++        <span className="rounded-full bg-accent/15 px-2.5 py-1 font-body text-[11px] font-semibold uppercase tracking-wider text-accent-light">
++          Live component
++        </span>
++      </div>
++      <div className="mb-5 font-display text-5xl font-semibold leading-none tracking-tight text-primary [font-variant-numeric:tabular-nums]">
++        {spec.whole}
++        <span className="text-3xl text-muted">{spec.decimals}</span>
++      </div>
++      <button
++        type="button"
++        onClick={() => setOpen((v) => !v)}
++        aria-expanded={open}
++        aria-controls={panelId}
++        className="flex min-h-11 w-full items-center justify-between rounded-xl border border-white/[0.08] bg-bg px-4 font-body text-sm font-medium text-primary transition-colors duration-200 hover:border-accent-light/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-light"
++      >
++        <span>{open ? "Hide how this is calculated" : "Show how this is calculated"}</span>
++        {open ? <Minus size={16} className="text-accent-light" aria-hidden /> : <Plus size={16} className="text-accent-light" aria-hidden />}
++      </button>
++      <div id={panelId}>
++        <AnimatePresence initial={false}>
++          {open && (
++            <motion.div
++              key="lines"
++              initial={reduce ? false : { height: 0, opacity: 0 }}
++              animate={{ height: "auto", opacity: 1 }}
++              exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
++              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
++              className="overflow-hidden"
++            >
++              <div className="mt-4 overflow-hidden rounded-xl border border-white/[0.08] font-body text-sm [font-variant-numeric:tabular-nums]">
++                {spec.lines.map((l) => (
++                  <div key={l.label} className="flex justify-between gap-4 border-b border-white/[0.06] px-4 py-3">
++                    <span className="text-muted">{l.label}</span>
++                    <span className="font-medium text-primary">{l.value}</span>
++                  </div>
++                ))}
++                <div className="flex justify-between gap-4 bg-accent/15 px-4 py-3 font-semibold text-primary">
++                  <span>{spec.total.label}</span>
++                  <span>{spec.total.value}</span>
++                </div>
++              </div>
++            </motion.div>
++          )}
++        </AnimatePresence>
++      </div>
++      {spec.note && <p className="mt-4 font-body text-xs text-dim">{spec.note}</p>}
++    </div>
++  );
++}
+diff --git a/src/components/case-studies/interactive/scroll-stage.tsx b/src/components/case-studies/interactive/scroll-stage.tsx
+new file mode 100644
+index 0000000..266a882
+--- /dev/null
++++ b/src/components/case-studies/interactive/scroll-stage.tsx
+@@ -0,0 +1,197 @@
++"use client";
++
++import { useEffect, useRef, useState } from "react";
++import { motion, AnimatePresence, useReducedMotion } from "motion/react";
++
++// Spec for a ```stage block: steps on the left, a sticky stage on the right that
++// follows the step you are reading (scroll) or click. Below `lg` each stage sits
++// under its own step, so nothing depends on scroll position.
++export type StageContent =
++  | { kind: "table"; head?: [string, string]; rows: [string, string][]; chips?: { text: string; tone?: "ok" | "warn" }[] }
++  | {
++      kind: "runway";
++      todayAt: number;
++      startLabel?: string;
++      endLabel?: string;
++      bills: { name: string; due: string; amount: string; at: number }[];
++    }
++  | { kind: "text"; lines: string[] };
++
++export type StageSpec = {
++  caption?: string;
++  steps: { title: string; blurb: string; stage: StageContent }[];
++};
++
++function Runway({ stage }: { stage: Extract<StageContent, { kind: "runway" }> }) {
++  const [sel, setSel] = useState(0);
++  const bill = stage.bills[sel];
++  return (
++    <div className="flex flex-col gap-6">
++      <p className="font-body text-sm text-muted">Runs from the last income to the next one. Tap a bill.</p>
++      <div className="relative mx-3 h-24">
++        <div className="absolute inset-x-0 top-11 h-1.5 rounded-full bg-white/[0.1]" />
++        <div className="absolute left-0 top-11 h-1.5 rounded-full bg-accent-light" style={{ width: `${stage.todayAt}%` }} />
++        <div className="absolute top-8 h-9 w-0.5 bg-accent-light" style={{ left: `${stage.todayAt}%` }} />
++        <span
++          className="absolute top-1 -translate-x-1/2 font-body text-[11px] font-semibold uppercase tracking-wider text-accent-light"
++          style={{ left: `${stage.todayAt}%` }}
++        >
++          Today
++        </span>
++        {stage.bills.map((b, i) => (
++          <button
++            key={b.name}
++            type="button"
++            onClick={() => setSel(i)}
++            aria-label={`${b.name}, ${b.due}, ${b.amount}`}
++            aria-pressed={sel === i}
++            className="absolute top-[34px] flex size-11 -translate-x-1/2 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-accent-light"
++            style={{ left: `${b.at}%` }}
++          >
++            <span
++              className={`size-4 rounded-full border-[3px] border-card transition-colors duration-200 ${
++                sel === i ? "bg-red-400" : "bg-muted"
++              }`}
++            />
++          </button>
++        ))}
++        <span className="absolute left-0 top-[76px] font-body text-[11px] text-dim">{stage.startLabel ?? "Last income"}</span>
++        <span className="absolute right-0 top-[76px] font-body text-[11px] text-dim">{stage.endLabel ?? "Next income"}</span>
++      </div>
++      {bill && (
++        <div className="flex items-center justify-between gap-4 rounded-xl border border-white/[0.08] bg-bg px-5 py-4">
++          <div>
++            <p className="font-body text-sm font-semibold text-primary">{bill.name}</p>
++            <p className="font-body text-xs text-muted">{bill.due}</p>
++          </div>
++          <p className="font-display text-xl font-semibold text-primary [font-variant-numeric:tabular-nums]">{bill.amount}</p>
++        </div>
++      )}
++    </div>
++  );
++}
++
++function Stage({ content }: { content: StageContent }) {
++  if (content.kind === "runway") return <Runway stage={content} />;
++  if (content.kind === "text") {
++    return (
++      <div className="flex flex-col gap-3">
++        {content.lines.map((l) => (
++          <p key={l} className="font-body text-sm leading-relaxed text-muted">{l}</p>
++        ))}
++      </div>
++    );
++  }
++  return (
++    <div className="flex flex-col gap-5">
++      <div className="overflow-hidden rounded-xl border border-white/[0.08] font-body text-sm [font-variant-numeric:tabular-nums]">
++        {content.head && (
++          <div className="flex bg-white/[0.03] px-4 py-2.5 text-[11px] uppercase tracking-wider text-dim">
++            <span className="flex-1">{content.head[0]}</span>
++            <span className="flex-1 text-right">{content.head[1]}</span>
++          </div>
++        )}
++        {content.rows.map(([a, b]) => (
++          <div key={a} className="flex border-t border-white/[0.06] px-4 py-3.5 text-primary first:border-t-0">
++            <span className="flex-1">{a}</span>
++            <span className="flex-1 text-right font-medium">{b}</span>
++          </div>
++        ))}
++      </div>
++      {content.chips && (
++        <div className="flex flex-wrap gap-2">
++          {content.chips.map((c) => (
++            <span
++              key={c.text}
++              className={`rounded-full px-3 py-1.5 font-body text-xs font-medium ${
++                c.tone === "warn" ? "border border-red-400/60 text-red-300" : "bg-accent/15 text-accent-light"
++              }`}
++            >
++              {c.text}
++            </span>
++          ))}
++        </div>
++      )}
++    </div>
++  );
++}
++
++export default function ScrollStage({ spec }: { spec: StageSpec }) {
++  const [active, setActive] = useState(0);
++  const reduce = useReducedMotion();
++  const refs = useRef<(HTMLLIElement | null)[]>([]);
++
++  // The step crossing the middle band of the viewport becomes active.
++  useEffect(() => {
++    const io = new IntersectionObserver(
++      (entries) => {
++        for (const e of entries) {
++          if (e.isIntersecting) {
++            const i = refs.current.indexOf(e.target as HTMLLIElement);
++            if (i >= 0) setActive(i);
++          }
++        }
++      },
++      { rootMargin: "-40% 0px -40% 0px" },
++    );
++    refs.current.forEach((el) => el && io.observe(el));
++    return () => io.disconnect();
++  }, [spec.steps.length]);
++
++  const go = (i: number) => {
++    setActive(i);
++    refs.current[i]?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
++  };
++
++  return (
++    <div className="my-10">
++      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-10">
++        <ol className="m-0 flex list-none flex-col gap-4 p-0 lg:gap-0">
++          {spec.steps.map((s, i) => (
++            <li
++              key={s.title}
++              ref={(el) => {
++                refs.current[i] = el;
++              }}
++              className="lg:flex lg:min-h-[48vh] lg:items-center"
++            >
++              <div className="w-full">
++                <button
++                  type="button"
++                  onClick={() => go(i)}
++                  aria-current={active === i ? "step" : undefined}
++                  className={`flex min-h-11 w-full flex-col gap-1 rounded-2xl border p-5 text-left transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-light ${
++                    active === i ? "border-accent-light bg-accent/10" : "border-white/[0.08] bg-card hover:border-white/[0.2]"
++                  }`}
++                >
++                  <span className="font-body text-xs text-dim">{String(i + 1).padStart(2, "0")}</span>
++                  <span className="font-display text-lg font-semibold text-primary">{s.title}</span>
++                  <span className="font-body text-sm leading-relaxed text-muted">{s.blurb}</span>
++                </button>
++                <div className="mt-4 rounded-2xl border border-white/[0.08] bg-card p-5 lg:hidden">
++                  <Stage content={s.stage} />
++                </div>
++              </div>
++            </li>
++          ))}
++        </ol>
++        <div className="hidden lg:block">
++          <div className="sticky top-28 min-h-[360px] rounded-3xl border border-white/[0.08] bg-card p-7">
++            <AnimatePresence mode="wait" initial={false}>
++              <motion.div
++                key={active}
++                initial={reduce ? false : { opacity: 0, y: 10 }}
++                animate={{ opacity: 1, y: 0 }}
++                exit={{ opacity: 0 }}
++                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
++              >
++                <Stage content={spec.steps[active].stage} />
++              </motion.div>
++            </AnimatePresence>
++          </div>
++        </div>
++      </div>
++      {spec.caption && <p className="mt-4 font-body text-xs text-dim">{spec.caption}</p>}
++    </div>
++  );
++}
+diff --git a/src/components/case-studies/markdown-case-study.tsx b/src/components/case-studies/markdown-case-study.tsx
+index 4b42e92..ea3c6c6 100644
+--- a/src/components/case-studies/markdown-case-study.tsx
++++ b/src/components/case-studies/markdown-case-study.tsx
+@@ -6,6 +6,10 @@ import remarkGfm from "remark-gfm";
+ import Tag from "@/components/ui/tag";
+ import ImageLightbox from "./image-lightbox";
+ import BeforeAfter, { type CompareSpec } from "./before-after";
++import Reveal from "./interactive/reveal";
++import SafeToSpend, { type SafeToSpendSpec } from "./interactive/safe-to-spend";
++import DecisionExplorer, { type DecisionSpec } from "./interactive/decision-explorer";
++import ScrollStage, { type StageSpec } from "./interactive/scroll-stage";
+ import { getCaseStudy, getPublicImageSize, type MdCaseStudy } from "@/lib/case-studies";
+ 
+ // Images share the text column width (896px body, 848px after padding).
+@@ -64,13 +68,40 @@ function nodeText(node: HastNode | undefined): string {
+   return (node.children ?? []).map(nodeText).join("");
+ }
+ 
+-function compareSource(node: HastNode | undefined): string | null {
++// Language of a fenced block ("compare", "decision", ...) and its raw text.
++function fenceSource(node: HastNode | undefined): { lang: string; raw: string } | null {
+   const code = node?.children?.[0];
+   const classes = code?.properties?.className;
+-  if (code?.tagName !== "code" || !Array.isArray(classes) || !classes.includes("language-compare")) return null;
+-  return (code.children ?? []).map((c) => c.value ?? "").join("");
++  if (code?.tagName !== "code" || !Array.isArray(classes)) return null;
++  const cls = classes.find((c) => typeof c === "string" && c.startsWith("language-"));
++  if (typeof cls !== "string") return null;
++  return { lang: cls.slice("language-".length), raw: (code.children ?? []).map((c) => c.value ?? "").join("") };
+ }
+ 
++// ```decision, ```stage and ```safe-to-spend blocks render interactive components.
++// Each body is JSON matching the spec type exported by its component (see ./interactive).
++function InteractiveBlock({ lang, raw }: { lang: string; raw: string }) {
++  let spec: unknown;
++  try {
++    spec = JSON.parse(raw);
++  } catch (err) {
++    return (
++      <p className="my-6 rounded-lg border border-red-500/40 bg-red-500/10 p-4 font-mono text-xs text-red-300">
++        Invalid {lang} block: {(err as Error).message}
++      </p>
++    );
++  }
++  return (
++    <Reveal>
++      {lang === "decision" && <DecisionExplorer spec={spec as DecisionSpec} />}
++      {lang === "stage" && <ScrollStage spec={spec as StageSpec} />}
++      {lang === "safe-to-spend" && <SafeToSpend spec={spec as SafeToSpendSpec} />}
++    </Reveal>
++  );
++}
++
++const INTERACTIVE = new Set(["decision", "stage", "safe-to-spend"]);
++
+ const md: Components = {
+   h2: ({ children }) => (
+     <h2 className="mt-16 mb-5 pt-10 border-t border-white/[0.06] font-display text-2xl lg:text-3xl font-semibold text-primary first:mt-0 first:border-t-0 first:pt-0">
+@@ -132,8 +163,9 @@ const md: Components = {
+     </code>
+   ),
+   pre: ({ node, children }) => {
+-    const compare = compareSource(node as unknown as HastNode);
+-    if (compare !== null) return <CompareBlock raw={compare} />;
++    const fence = fenceSource(node as unknown as HastNode);
++    if (fence?.lang === "compare") return <CompareBlock raw={fence.raw} />;
++    if (fence && INTERACTIVE.has(fence.lang)) return <InteractiveBlock lang={fence.lang} raw={fence.raw} />;
+     return (
+     <pre className="my-6 overflow-x-auto rounded-xl border border-white/[0.08] bg-black/30 p-4 font-mono text-sm text-muted [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-muted">
+       {children}

@@ -92,7 +92,7 @@ export default function CaseStudiesPage() {
                 href={`/case-studies/${cs.slug}`}
                 className="group flex flex-col rounded-2xl border border-white/[0.07] bg-card overflow-hidden hover:border-white/[0.14] transition-[transform,border-color] duration-200 hover:-translate-y-1 cursor-pointer"
               >
-                <div className={`h-48 relative overflow-hidden ${cs.cover ? "bg-surface" : `bg-gradient-to-br ${gradients[(i + 1) % gradients.length]}`}`}>
+                <div className={`aspect-video relative overflow-hidden ${cs.cover ? "bg-surface" : `bg-gradient-to-br ${gradients[(i + 1) % gradients.length]}`}`}>
                   {cs.cover && (
                     <img
                       src={cs.cover}

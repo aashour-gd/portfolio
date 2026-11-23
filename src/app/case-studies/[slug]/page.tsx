@@ -43,6 +43,7 @@ export async function generateMetadata({
     return {
       title: `${mdCs.title} — Case Study`,
       description: mdCs.summary,
+      robots: mdCs.draft ? { index: false, follow: false } : undefined,
       openGraph: {
         type: "article",
         url: `/case-studies/${mdCs.slug}`,

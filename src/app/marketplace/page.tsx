@@ -10,7 +10,7 @@ import { marketplaceItems, marketplaceCategories, type MarketplaceItem } from "@
 function ProductCard({ item }: { item: MarketplaceItem }) {
   return (
     <div className="group flex flex-col rounded-2xl border border-white/[0.07] bg-card overflow-hidden hover:border-white/[0.14] transition-[transform,border-color] duration-200 hover:-translate-y-1 cursor-default">
-      <div className={`h-48 relative overflow-hidden ${item.cover ? "bg-surface" : `bg-gradient-to-br ${item.gradient}`}`}>
+      <div className={`aspect-video relative overflow-hidden ${item.cover ? "bg-surface" : `bg-gradient-to-br ${item.gradient}`}`}>
         {item.cover && (
           <img
             src={item.cover}

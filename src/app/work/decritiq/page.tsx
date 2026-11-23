@@ -158,26 +158,26 @@ export default function DecritiqProjectPage() {
                   />
                 </div>
               </div>
-
-              {/* Facts — plain two-column list, no header row */}
-              <dl className="mt-12 rounded-xl border border-white/[0.08] overflow-hidden">
-                {FACTS.map(([k, v], i) => (
-                  <div
-                    key={k}
-                    className={`grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-1 sm:gap-4 px-4 py-3 font-body text-sm ${
-                      i < FACTS.length - 1 ? "border-b border-white/[0.06]" : ""
-                    }`}
-                  >
-                    <dt className="font-semibold text-primary">{k}</dt>
-                    <dd className="text-muted">{v}</dd>
-                  </div>
-                ))}
-              </dl>
             </div>
           </section>
 
           {/* Body */}
           <div className="max-w-4xl mx-auto px-6 pb-24">
+            {/* Facts — plain two-column list, no header row */}
+            <dl className="mt-12 rounded-xl border border-white/[0.08] overflow-hidden">
+              {FACTS.map(([k, v], i) => (
+                <div
+                  key={k}
+                  className={`grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-1 sm:gap-4 px-4 py-3 font-body text-sm ${
+                    i < FACTS.length - 1 ? "border-b border-white/[0.06]" : ""
+                  }`}
+                >
+                  <dt className="font-semibold text-primary">{k}</dt>
+                  <dd className="text-muted">{v}</dd>
+                </div>
+              ))}
+            </dl>
+
             {/* Why I built it */}
             <SectionHeading label="Why" title="Why I built it" />
             <div className="flex flex-col gap-4 font-body text-base text-muted leading-[1.8]">
@@ -373,6 +373,20 @@ export default function DecritiqProjectPage() {
                 mark, which the app plays while it works. I animated it in Figma Motion and exported it as Lottie JSON,
                 so it stays small and sharp at any size.
               </p>
+              {/* Animated loading mark (GIF loops on its own; data-no-lightbox keeps it out of the enlarge handler) */}
+              <figure data-no-lightbox className="m-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/decritiq-logo-loading-icon.gif"
+                  alt="The Decritiq loading icon: the eye-in-marker mark animating in a short loop"
+                  width={160}
+                  height={160}
+                  className="rounded-2xl border border-white/[0.06]"
+                />
+                <figcaption className="mt-3 font-body text-sm text-dim">
+                  The loading icon the app plays while it works.
+                </figcaption>
+              </figure>
               <p>
                 <strong className="font-semibold text-primary">How I made it.</strong> I drew the logo in Figma, then
                 used Figma Motion with Figma AI. I wrote a motion-designer skill to guide it, built the animation in

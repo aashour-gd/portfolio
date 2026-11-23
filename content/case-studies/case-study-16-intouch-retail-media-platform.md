@@ -1,5 +1,5 @@
 ---
-title: "Designing both sides of a retail media network"
+title: "Intouch: Retail Media Platform"
 summary: "Six years designing Intouch Live for retailers and Intouch Ads for advertisers: a retail media network live on three continents. From sole designer to Head of UX."
 tags: ["Product Design", "Design Systems", "UX Leadership", "Retail Media"]
 product: "Intouch"
@@ -8,7 +8,7 @@ unlisted: true
 next: two-sided-product-architecture
 ---
 
-# Designing both sides of a retail media network
+# Intouch: Retail Media Platform
 
 ## At a glance
 
@@ -41,7 +41,10 @@ I kept designing hands-on the whole time. Leading the team never replaced doing 
 
 ## The products
 
-### Intouch Live
+![Intouch product selector: Live, Ads, Spark and Central](/images/nexa-select-product-2026.png)
+*The product selector from the 2026 rebuild, on mock data.*
+
+### ![Intouch Live](/images/logos/intouch-live.svg)
 
 The retailer's console for running an in-store advertising network.
 
@@ -58,7 +61,7 @@ The retailer's console for running an in-store advertising network.
 
 **Case studies:** [Flexible data tables](/case-studies/flexible-data-tables) · [Specs as a conversation](/case-studies/specs-as-a-conversation)
 
-### Intouch Ads
+### ![Intouch Ads](/images/logos/intouch-ads.svg)
 
 The advertiser's self-serve portal into the same network.
 

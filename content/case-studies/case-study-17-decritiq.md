@@ -6,6 +6,7 @@ product: Decritiq
 summary: "A design critique tool where every finding is pinned, measured and tied to a rule. I tested it on injected defects and audited the product with my own design-system method."
 tags: [Product Design, Design Systems, AI Tooling]
 cover: /images/decritiq-cover-v2.png
+order: 1.6
 ---
 
 | | |

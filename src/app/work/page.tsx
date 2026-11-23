@@ -36,7 +36,7 @@ function CardInner({ project, showCategory = true }: { project: Project; showCat
   const cls = "group flex flex-col rounded-2xl border border-white/[0.07] bg-card overflow-hidden hover:border-white/[0.14] transition-[transform,border-color] duration-200 hover:-translate-y-1 cursor-pointer block";
   const inner = (
     <>
-      <div className="h-52 relative overflow-hidden bg-surface">
+      <div className="aspect-video relative overflow-hidden bg-surface">
         {project.cover ? (
           <Image
             src={project.cover}

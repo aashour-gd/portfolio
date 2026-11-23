@@ -15,7 +15,7 @@ function ProjectCard({ project, large = false }: { project: Project; large?: boo
   const inner = (
     <>
       {/* Thumbnail */}
-      <div className={`relative overflow-hidden ${large ? "aspect-[16/9]" : "aspect-[4/3]"} bg-surface`}>
+      <div className="relative overflow-hidden aspect-[16/9] bg-surface">
         {project.cover ? (
           <Image
             src={project.cover}

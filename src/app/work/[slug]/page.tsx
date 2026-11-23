@@ -7,7 +7,7 @@ import { getAllCaseStudies, getCaseStudy } from "@/lib/case-studies";
 export function generateStaticParams() {
   // "decritiq" has its own bespoke project page at /work/decritiq (static route wins).
   return getAllCaseStudies()
-    .filter((c) => c.slug !== "decritiq")
+    .filter((c) => c.slug !== "decritiq" && c.slug !== "citydal-logo")
     .map((c) => ({ slug: c.slug }));
 }
 
@@ -23,6 +23,8 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 
 export default async function CaseStudyPage(props: { params: Promise<{ slug: string }> }) {
   const { slug } = await props.params;
+  // The CityDal logo case study is a hidden draft — it lives only under /case-studies.
+  if (slug === "citydal-logo") notFound();
   const cs = getCaseStudy(slug);
   if (!cs) notFound();
 

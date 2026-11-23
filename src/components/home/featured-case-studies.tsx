@@ -57,7 +57,7 @@ const CASE_STUDIES: CaseStudy[] = [
     tags: ["Product Design", "UX Strategy", "Retail Media"],
     accent: "#F59E0B",
     panelBg: "#EDE4D5",
-    imageSrc: "/images/retail-os-cover.png",
+    imageSrc: "/images/retail-os-cover-v2.png",
     href: "/case-studies/retail-os",
     statsOnLight: true,
     stats: [
@@ -83,6 +83,26 @@ const CASE_STUDIES: CaseStudy[] = [
       { value: "62", label: "Rules" },
       { value: "0", label: "False alarms" },
       { value: "45", label: "Icons matched" },
+    ],
+  },
+  {
+    index: "04",
+    slug: "citydal-v2",
+    title: "CityDal v2: Two Apps, One System",
+    category: "Product Design · Mobile",
+    hook: "I fixed the flows that stopped people, in both apps.",
+    summary:
+      "A redesign of my own 2023 CityDal apps as a live prototype: booking, chat, map and deals reworked for customers, and a Business app that matches it. Bilingual by design, in English and Arabic.",
+    tags: ["Product Design", "Mobile", "Arabic / RTL"],
+    accent: "#F0544F",
+    panelBg: "#F7F4F0",
+    imageSrc: "/assets/citydal-v2/citydal-v2-case-study-cover.png",
+    href: "/case-studies/citydal-v2",
+    statsOnLight: true,
+    stats: [
+      { value: "2", label: "Apps" },
+      { value: "2", label: "Languages" },
+      { value: "7", label: "v1 problems fixed" },
     ],
   },
 ];
@@ -243,7 +263,7 @@ function CaseStudyCard({ cs, i }: { cs: CaseStudy; i: number }) {
               </div>
             </div>
           ) : (
-            /* Cover image */
+            /* Cover image — fills the whole panel so a 16:9 cover sits edge-to-edge with no gaps */
             <div className="flex-1 relative" style={{ minHeight: "200px" }}>
               <img
                 src={cs.imageSrc}
@@ -253,7 +273,8 @@ function CaseStudyCard({ cs, i }: { cs: CaseStudy; i: number }) {
                   inset: 0,
                   width: "100%",
                   height: "100%",
-                  objectFit: "contain",
+                  objectFit: "cover",
+                  objectPosition: "center",
                 }}
               />
             </div>
