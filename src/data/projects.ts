@@ -70,7 +70,7 @@ export const projects: Project[] = [
     tags: ["Mobile Design", "UX Research", "Prototyping"],
     featured: true,
     gradient: "from-teal-900/50 via-emerald-900/30 to-transparent",
-    cover: "/assets/afif/Cover.png",
+    cover: "/images/afif-cover.png",
     href: "/work/afif",
   },
   {
