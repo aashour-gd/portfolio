@@ -4,6 +4,7 @@ summary: "A website for an app that can no longer be installed: built around the
 tags: ["Web Design", "Landing Page", "Arabic / RTL", "Front-end"]
 product: "CityDal"
 cover: /assets/citydal-web/citydal-web-case-study-cover.webp
+unlisted: true
 ---
 
 # CityDal website: a live prototype instead of a download button
@@ -98,3 +99,5 @@ A landing page for an unknown product has to give a stranger one reason to try i
 
 ## Footer bio line
 Ahmed Ashour is a Senior Product Designer with 10+ years across SaaS, mobile and e-commerce. This case study is published on aashour.com.
+
+Related: the [CityDal logo](/case-studies/citydal-logo) and the [CityDal v2 redesign](/case-studies/citydal-v2).

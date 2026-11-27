@@ -4,8 +4,6 @@ summary: "I redesigned both CityDal apps as a live prototype: the flows that sto
 tags: ["Product Design", "Mobile", "Marketplace", "Arabic / RTL"]
 product: "CityDal"
 cover: /assets/citydal-v2/citydal-v2-case-study-cover.png
-unlisted: true
-draft: true
 ---
 
 # CityDal v2: I fixed the flows that stopped people, in both apps
@@ -132,3 +130,5 @@ I started by treating the Business app as the "other" app and ended up treating 
 
 ## Footer bio line
 Ahmed Ashour is a Senior Product Designer with 10+ years across SaaS, mobile and e-commerce. This case study is published on aashour.com.
+
+Related: the [CityDal logo](/case-studies/citydal-logo) and the [CityDal website](/case-studies/citydal-website).
