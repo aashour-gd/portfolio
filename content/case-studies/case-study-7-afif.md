@@ -14,7 +14,7 @@ AFIF is a parental monitoring app built for Egyptian families navigating the ris
 
 The project was designed in Egypt in 2023, covering the full product scope from logo and brand identity through to high-fidelity UI screens for both the parent and child-facing sides of the app.
 
-![AFIF — cover](/assets/afif/Cover.png)
+![AFIF — cover](/assets/AFIF/Cover.png)
 
 ## The Brief
 
@@ -27,7 +27,7 @@ AFIF has two distinct user types who interact with the same underlying system ve
 - **Parents / supervisors** — need a clear, scannable dashboard to monitor multiple children at once, act on warnings quickly, and configure supervision settings without friction
 - **Children** — see a minimal app that shows their supervision status and lets them respond to requests; the experience should feel safe and non-threatening
 
-![App overview and splash screens](/assets/afif/1.png)
+![App overview and splash screens](/assets/AFIF/1.png)
 
 ## The Logo
 
@@ -35,39 +35,39 @@ The logomark is a stylized **"A"** with a flowing leaf or wing shape cutting thr
 
 Brand values embedded in the mark: **Monitor · Privacy · Guidance · Safety**
 
-![Logo creation and app icon variants](/assets/afif/4.png)
+![Logo creation and app icon variants](/assets/AFIF/4.png)
 
 ## The Parent Dashboard
 
 The supervisees screen is the heart of the app for parents. It surfaces the most critical signals at a glance — battery level, location status (within range / out of range), and screenshot count — for each child in the list. Color coding immediately draws the eye to anything that needs attention: a red battery or an "out of range" flag reads as urgent without requiring the parent to dig into a detail view.
 
-![Supervisees dashboard](/assets/afif/2.png)
+![Supervisees dashboard](/assets/AFIF/2.png)
 
 ## Notifications and Warnings
 
 <!-- Describe the notification/warning system design decisions here -->
 
-![Contextual scenarios and notification design](/assets/afif/3.png)
+![Contextual scenarios and notification design](/assets/AFIF/3.png)
 
 ## Screens
 
-![Screen — [add description]](/assets/afif/5.png)
+![Screen — [add description]](/assets/AFIF/5.png)
 
-![Screen — [add description]](/assets/afif/6.png)
+![Screen — [add description]](/assets/AFIF/6.png)
 
-![Screen — [add description]](/assets/afif/7.png)
+![Screen — [add description]](/assets/AFIF/7.png)
 
-![Screen — [add description]](/assets/afif/8.png)
+![Screen — [add description]](/assets/AFIF/8.png)
 
-![Screen — [add description]](/assets/afif/9.png)
+![Screen — [add description]](/assets/AFIF/9.png)
 
-![Screen — [add description]](/assets/afif/10.png)
+![Screen — [add description]](/assets/AFIF/10.png)
 
-![Screen — [add description]](/assets/afif/11.png)
+![Screen — [add description]](/assets/AFIF/11.png)
 
-![Screen — [add description]](/assets/afif/12.png)
+![Screen — [add description]](/assets/AFIF/12.png)
 
-![Screen — [add description]](/assets/afif/13.png)
+![Screen — [add description]](/assets/AFIF/13.png)
 
 ## Design Decisions Worth Noting
 
