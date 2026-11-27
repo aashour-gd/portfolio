@@ -76,7 +76,7 @@ export const projects: Project[] = [
   {
     slug: "citydal-app",
     title: "CityDal: one city guide, two apps",
-    category: "Graphic Design",
+    category: "UI/UX Design",
     year: "2023–2026",
     description: "One city guide in two apps, designed in 2023, then redesigned in 2026 as a live prototype you can try. I designed the brand, both apps and the redesign.",
     tags: ["Brand Identity", "Product Design", "Mobile"],

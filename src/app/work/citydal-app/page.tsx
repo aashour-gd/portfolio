@@ -11,9 +11,9 @@ import { getPublicImageSize } from "@/lib/case-studies";
 
 const SUMMARY =
   "One city guide in two apps: one for people finding places and deals, one for the businesses they look for. The 2023 product, and the 2026 redesign you can try here.";
-const HERO_IMG = "/assets/citydal/brand_cover.png";
+const HERO_IMG = "/assets/citydal-v2/citydal-v2-cover.png";
 // Update this line whenever the prototype changes (see the sync map in the project docs).
-const PROTOTYPE_UPDATED = "21 Nov 2026";
+const PROTOTYPE_UPDATED = "23 Nov 2026";
 
 export const metadata: Metadata = {
   title: "CityDal",
@@ -50,10 +50,26 @@ const VERSIONS = [
   },
 ];
 
+const WIDE = "(min-width: 896px) 832px, calc(100vw - 3rem)";
+
+const SWATCHES: [string, string, string][] = [
+  ["#F0544F", "Coral", "Brand colour. Fills, buttons, active chips."],
+  ["#14688C", "Ocean", "Confirmations and links on light."],
+  ["#14202B", "Ink", "Text on light."],
+  ["#F3EEE8", "Sand", "Muted surfaces."],
+  ["#0C1318", "Night", "Dark mode base."],
+];
+
+const DECISIONS: [string, string][] = [
+  ["Owners write both languages", "A business types its name and description in English and Arabic itself. Nothing is auto-translated, so an owner never meets a wrong translation of their own shop."],
+  ["A place shows its deals", "In version 1 people could not connect a place with its deals. In version 2 a place page lists the deals available there, and a deal opens straight into booking."],
+  ["Small text never sits on coral", "White on the brand coral is 3.45:1, so only large bold text goes on it. Small text next to coral is ink, which keeps the brand colour and stays readable."],
+];
+
 const CASE_STUDIES: [string, string, string, string?][] = [
   ["Brand", "A logo that says the name and shows the idea", "Read", "/case-studies/citydal-logo"],
   ["Both apps · v2", "I fixed the flows that stopped people, in both apps", "Draft", "/case-studies/citydal-v2"],
-  ["Website and landing page", "How the app introduces itself", "Coming soon"],
+  ["Website and landing page", "I sold the live prototype instead of a download button", "Read", "/case-studies/citydal-website"],
 ];
 
 function Figure({ src, alt, caption, sizes = "(min-width: 896px) 420px, calc(100vw - 3rem)" }: { src: string; alt: string; caption?: string; sizes?: string }) {
@@ -68,6 +84,17 @@ function Figure({ src, alt, caption, sizes = "(min-width: 896px) 420px, calc(100
       )}
       {caption && <figcaption className="mt-3 font-body text-sm text-dim">{caption}</figcaption>}
     </figure>
+  );
+}
+
+/** A wide strip of phone screens: full width on desktop, swipes sideways on a phone so the screens stay readable. */
+function Strip(props: { src: string; alt: string; caption: string }) {
+  return (
+    <div className="-mx-6 overflow-x-auto px-6 sm:mx-0 sm:px-0">
+      <div className="min-w-[720px] sm:min-w-0">
+        <Figure {...props} sizes={WIDE} />
+      </div>
+    </div>
   );
 }
 
@@ -111,7 +138,7 @@ export default function CityDalProjectPage() {
                 </div>
                 <Figure
                   src={HERO_IMG}
-                  alt="CityDal brand guidelines cover: the wordmark and tagline beside an oversized version of the logo mark"
+                  alt="CityDal: the logo and the line Discover the city, run a business in it, beside the user app and CityDal Business"
                   sizes="(min-width: 1024px) 560px, calc(100vw - 3rem)"
                 />
               </div>
@@ -128,6 +155,43 @@ export default function CityDalProjectPage() {
               ))}
             </dl>
 
+            <SectionHeading label="What it does" title="Two apps, one loop" />
+            <p className="font-body text-base text-muted leading-[1.8] mb-8">
+              A business publishes a service or a deal in CityDal Business. A person finds it in the user app, books a time
+              and chats with the business. The business sees the booking, confirms it and sees who looked.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+              <div className="rounded-xl border border-white/[0.08] p-6">
+                <span className="block font-body text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-2">User app</span>
+                <ul className="flex flex-col gap-2 font-body text-sm text-muted leading-[1.75] list-disc pl-5">
+                  <li>Find places, events and deals near you, as a list or on a map</li>
+                  <li>Open a place to see its deals, hours, reviews and a call, directions, chat or save shortcut</li>
+                  <li>Book a day and a time, add a note, get a confirmation ticket</li>
+                  <li>Chat with a business and keep your bookings in one place</li>
+                </ul>
+              </div>
+              <div className="rounded-xl border border-white/[0.08] p-6">
+                <span className="block font-body text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-2">CityDal Business</span>
+                <ul className="flex flex-col gap-2 font-body text-sm text-muted leading-[1.75] list-disc pl-5">
+                  <li>Set up a business with a logo, photos, hours and a bilingual description</li>
+                  <li>Publish services and deals in English and Arabic</li>
+                  <li>Confirm or decline booking requests and answer customers in chat</li>
+                  <li>See page views, favourites, rating and redeemed deals at a glance</li>
+                </ul>
+              </div>
+            </div>
+            <div className="flex flex-col gap-6">
+              <Strip src="/assets/citydal-v2/citydal-v2-people.webp" alt="The user app: Home, the Nearby map, and a place page with its available deals" caption="User app: Home, the Nearby map, and a place with its deals." />
+              <Strip src="/assets/citydal-v2/citydal-v2-business.webp" alt="CityDal Business: the dashboard, the Publish a deal form with English and Arabic fields, and the bookings list with Confirm and Decline" caption="CityDal Business: the dashboard, publishing a bilingual deal, and bookings to confirm." />
+            </div>
+
+            <SectionHeading label="Try it" title="Version 2, working" />
+            <p className="font-body text-base text-muted leading-[1.8] mb-8">
+              This is the 2026 prototype, running live, not screenshots. Switch the language to Arabic, try dark mode,
+              open a place from the map. Last updated {PROTOTYPE_UPDATED}.
+            </p>
+            <CityDalEmbed />
+
             <SectionHeading label="Two versions" title="Version 1 in 2023, version 2 in 2026" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {VERSIONS.map((v) => (
@@ -143,12 +207,56 @@ export default function CityDalProjectPage() {
               ))}
             </div>
 
-            <SectionHeading label="Try it" title="Version 2, working" />
+
+
+            <SectionHeading label="What changed" title="Before and after, three flows" />
             <p className="font-body text-base text-muted leading-[1.8] mb-8">
-              This is the 2026 prototype, running live, not screenshots. Switch the language to Arabic, try dark mode,
-              open a place from the map. Last updated {PROTOTYPE_UPDATED}.
+              I rebuilt the flows where people got stuck: booking, finding a place with its deals, and chat. The 2023
+              screens are on the left and the 2026 ones on the right. The{" "}
+              <Link href="/case-studies/citydal-v2" className="text-accent-light underline underline-offset-4 hover:text-primary">case study</Link>{" "}
+              has the reasoning.
             </p>
-            <CityDalEmbed />
+            <Figure src="/assets/citydal-v2/citydal-v2-case-study-cover.png" alt="Three flows before (2023) and after (2026): booking, place and deals, chat" sizes={WIDE} />
+
+            <SectionHeading label="The system" title="One system for both apps" />
+            <p className="font-body text-base text-muted leading-[1.8] mb-8">
+              Both apps share one set of colours, type, components and spacing, so a business owner and a customer are
+              looking at the same product. The whole system works in English and Arabic, in light and dark.
+            </p>
+            <ul className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6">
+              {SWATCHES.map(([hex, name, use]) => (
+                <li key={name} className="rounded-xl border border-white/[0.08] overflow-hidden">
+                  <div className="h-16" style={{ background: hex }} aria-hidden />
+                  <div className="p-3">
+                    <span className="block font-display text-sm text-primary">{name}</span>
+                    <span className="block font-body text-xs text-dim">{hex}</span>
+                    <span className="block mt-1 font-body text-xs text-muted leading-[1.5]">{use}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p className="font-body text-sm text-muted leading-[1.75] mb-8">
+              Type is Plus Jakarta Sans for English and IBM Plex Sans Arabic for Arabic. Arabic uses right-to-left layout
+              and Eastern numerals. Motion has a reduced-motion fallback.
+            </p>
+            <Strip src="/assets/citydal-v2/citydal-v2-arabic-dark-both.webp" alt="Arabic right-to-left Home, dark mode Home, and the dark mode business dashboard" caption="Arabic right-to-left, dark mode, and the Business app in dark." />
+
+            <SectionHeading label="Decisions" title="Three choices that shaped it" />
+            <ol className="flex flex-col gap-4">
+              {DECISIONS.map(([title, body], i) => (
+                <li key={title} className="rounded-xl border border-white/[0.08] p-5 grid grid-cols-[32px_1fr] gap-3">
+                  <span className="font-display text-xl text-accent">{i + 1}</span>
+                  <div>
+                    <h3 className="font-display text-lg text-primary mb-1">{title}</h3>
+                    <p className="font-body text-sm text-muted leading-[1.75]">{body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-4 font-body text-sm text-muted">
+              More in the{" "}
+              <Link href="/case-studies/citydal-v2" className="text-accent-light underline underline-offset-4 hover:text-primary">case study</Link>.
+            </p>
 
             <SectionHeading label="Brand" title="The logo, from 2023" />
             <div className="flex flex-col gap-4 font-body text-base text-muted leading-[1.8] mb-8">
@@ -157,6 +265,9 @@ export default function CityDalProjectPage() {
                 provider app adds a small &ldquo;Business&rdquo; label to the same mark, so the logo changes with the app a
                 person opens. Version 2 keeps the mark and reinterprets the colour and type around it.
               </p>
+            </div>
+            <div className="mb-5">
+              <Figure src="/assets/citydal/brand_cover.png" alt="The 2023 CityDal brand guidelines cover: the wordmark and tagline beside an oversized version of the logo mark" caption="The 2023 brand guidelines." sizes={WIDE} />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <Figure src="/assets/citydal/citydal-11.png" alt="The CityDal horizontal logo: the logomark paired with the wordmark and tagline" caption="The 2023 logo lockup." />
