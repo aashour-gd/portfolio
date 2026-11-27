@@ -68,7 +68,7 @@ const DECISIONS: [string, string][] = [
 
 const CASE_STUDIES: [string, string, string, string?][] = [
   ["Brand", "A logo that says the name and shows the idea", "Read", "/case-studies/citydal-logo"],
-  ["Both apps · v2", "I fixed the flows that stopped people, in both apps", "Draft", "/case-studies/citydal-v2"],
+  ["Both apps · v2", "I fixed the flows that stopped people, in both apps", "Read", "/case-studies/citydal-v2"],
   ["Website and landing page", "I sold the live prototype instead of a download button", "Read", "/case-studies/citydal-website"],
 ];
 
