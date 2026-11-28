@@ -10,6 +10,7 @@ export type Project = {
   cover?: string;
   href: string;
   external?: boolean;
+  hidden?: boolean;
 };
 
 export const projects: Project[] = [
@@ -57,6 +58,7 @@ export const projects: Project[] = [
     description: "An AI-powered CLI that audits Figma files against design-system rules — catching spacing, color, and typography inconsistencies before they reach the developer.",
     tags: ["AI", "Design QA", "Design Systems", "Developer Tools"],
     featured: true,
+    hidden: true,
     gradient: "from-blue-900/50 via-indigo-900/30 to-transparent",
     cover: "/images/designguard.png",
     href: "/work/designguard",
@@ -88,10 +90,11 @@ export const projects: Project[] = [
 ];
 
 export function getFeaturedProjects(): Project[] {
-  return projects.filter((p) => p.featured).slice(0, 6);
+  return projects.filter((p) => p.featured && !p.hidden).slice(0, 6);
 }
 
 export function getProjectsByCategory(category: Project["category"] | "All"): Project[] {
-  if (category === "All") return projects;
-  return projects.filter((p) => p.category === category);
+  const visible = projects.filter((p) => !p.hidden);
+  if (category === "All") return visible;
+  return visible.filter((p) => p.category === category);
 }
