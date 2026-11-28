@@ -3,6 +3,7 @@ title: "Retail OS — Modular Retail Platform"
 summary: "A modular omnichannel platform for grocery retailers, piloted on a 78-year-old wholesaler with zero digital presence."
 tags: ["Product Design", "UX Strategy", "Design Systems", "Retail Media"]
 product: "Retail OS"
+cover: /images/retail-os-cover-v2.png
 ---
 
 # Retail OS — Modular Retail Platform

@@ -1,4 +1,5 @@
 ---
+unlisted: true
 product: "Intouch"
 title: "Specs as a conversation, not a document"
 slug: specs-as-a-conversation
