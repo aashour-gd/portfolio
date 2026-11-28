@@ -3,6 +3,7 @@ title: "DesignGuard — AI-Powered Design QA"
 summary: "Catching design inconsistencies before they reach the developer."
 tags: ["AI", "Design QA", "Design Systems", "Developer Tools"]
 product: "DesignGuard"
+unlisted: true
 ---
 
 # DesignGuard — AI-Powered Design QA
