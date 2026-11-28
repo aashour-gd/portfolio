@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Download } from "lucide-react";
+import { Search, ExternalLink } from "lucide-react";
 import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import Tag from "@/components/ui/tag";
@@ -39,7 +39,7 @@ function ProductCard({ item }: { item: MarketplaceItem }) {
         </p>
         <div className="flex items-center justify-end">
           {(() => {
-            const label = item.price === "Free" ? "Download" : "Buy Now";
+            const label = item.price === "Free" ? "Open" : "Buy Now";
             const cls =
               "inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent/10 hover:bg-accent/20 border border-accent/20 text-xs font-medium font-body text-accent-light transition-colors duration-200 cursor-pointer";
             return item.url ? (
@@ -50,12 +50,12 @@ function ProductCard({ item }: { item: MarketplaceItem }) {
                 aria-label={`${label} ${item.name}`}
                 className={cls}
               >
-                <Download size={13} />
+                <ExternalLink size={13} />
                 {label}
               </a>
             ) : (
               <button aria-label={`${label} ${item.name}`} className={cls}>
-                <Download size={13} />
+                <ExternalLink size={13} />
                 {label}
               </button>
             );

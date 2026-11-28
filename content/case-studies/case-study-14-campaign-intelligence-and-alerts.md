@@ -1,4 +1,5 @@
 ---
+unlisted: true
 product: "Intouch"
 title: "Campaign intelligence: turning a PRD into a scoring model"
 slug: campaign-intelligence-and-alerts

@@ -44,6 +44,17 @@ export const marketplaceItems: MarketplaceItem[] = [
     url: "https://www.figma.com/community/file/1696980963052003898",
     cover: "/images/pillow-icons-cover.png",
   },
+  {
+    id: "text-animation-kit",
+    name: "Text Animation Kit – Figma Motion",
+    description: "42 ready-made text animations for Figma Motion, built as cards you can duplicate. Fade-ups, typewriters, tracking, scramble, karaoke captions, counters and more.",
+    category: "Template",
+    price: "Free",
+    gradient: "from-blue-800/40 to-slate-900/40",
+    featured: true,
+    url: "https://www.figma.com/community/file/1704841647788626531",
+    cover: "/images/text-animation-cover.png",
+  },
 ];
 
-export const marketplaceCategories = ["All", "UI Kit", "Design System", "Icon Pack"] as const;
+export const marketplaceCategories = ["All", "UI Kit", "Design System", "Icon Pack", "Template"] as const;

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Tag from "@/components/ui/tag";
 import { marketplaceItems } from "@/data/marketplace";
@@ -83,17 +83,17 @@ export default function MarketplacePreview() {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`Get ${item.name}`}
+                      aria-label={`Open ${item.name}`}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs font-medium font-body text-primary transition-all duration-200 cursor-pointer"
                     >
-                      <Download size={13} /> Get
+                      <ExternalLink size={13} /> Open
                     </a>
                   ) : (
                     <button
-                      aria-label={`Download ${item.name}`}
+                      aria-label={`Open ${item.name}`}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-xs font-medium font-body text-primary transition-all duration-200 cursor-pointer"
                     >
-                      <Download size={13} /> Get
+                      <ExternalLink size={13} /> Open
                     </button>
                   )}
                 </div>
